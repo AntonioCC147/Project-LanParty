@@ -93,8 +93,9 @@ int main(int argc, char *argv[])
     fclose(fileRead); fclose(tasks); fclose(filePrint);
     }
 
-    
-
+    printf("Da");
+    Printf("Nu");
+    Printf("Nu");
 
     return 0;
 }
