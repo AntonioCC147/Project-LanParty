@@ -93,5 +93,7 @@ int main(int argc, char *argv[])
     fclose(fileRead); fclose(tasks); fclose(filePrint);
     }
 
+    printf("TBA");
+
     return 0;
 }
