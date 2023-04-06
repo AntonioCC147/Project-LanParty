@@ -2,7 +2,7 @@
 
 typedef struct Queue{
     Team *front, *rear;
-} Queue;
+}Queue;
 
 Queue *createQueue();
 void enQueue(Queue *q, Team *v);

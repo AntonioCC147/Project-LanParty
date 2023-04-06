@@ -86,10 +86,6 @@ int main(int argc, char *argv[])
 
         for(int i = numOfTeams - 1; i >= 0; i--)
             displayFileTeamName(argv[3], teamList[i]);
-    
-
-    //for(int i = numOfTeams - 1; i >= 0; i--)
-        //displayFileTeamName(argv[3], teamList[i]);
 
     //inchidere fis
     //fclose(fileRead); fclose(tasks); fclose(filePrint);
@@ -105,8 +101,10 @@ int main(int argc, char *argv[])
         for(int i = 0; i < numOfTeams; i++)
             enQueue(teamListQueue, teamList[i]);
 
-        for(int i = 0; i < numOfTeams; i++)
+        //for de la 0 la numOfTeams in care iau 2 echipe cu dequeue si le bag in lista
             deQueue(teamListQueue);
+            //if()
+        Queue *firstTeam, *secondTeam;
     }
 
     return 0;

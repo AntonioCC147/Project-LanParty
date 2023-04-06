@@ -13,18 +13,23 @@ Queue *createQueue(){
 void enQueue(Queue *q, Team *v){
 	Team *newNode = (Team *)malloc(sizeof(Team));
 
+	newNode->teamName = (char *)malloc(strlen(v->teamName) + 1);
     strcpy(newNode->teamName, v->teamName);
+
     newNode->teamMates = v->teamMates;
     newNode->totalPoints = v->totalPoints;
+
+	newNode->val.firstName = (char *)malloc(strlen(v->val.firstName) + 1);
     strcpy(newNode->val.firstName, v->val.firstName);
+	newNode->val.secondName = (char *)malloc(strlen(v->val.secondName) + 1);
     strcpy(newNode->val.secondName, v->val.secondName);
+
 	newNode->val.points = v->val.points;
 
 	newNode->next = NULL;
 	if(q->rear == NULL)
 		q->rear = newNode;
-	else
-	{
+	else{
 		(q->rear)->next = newNode;
 		(q->rear) = newNode;
 	}
