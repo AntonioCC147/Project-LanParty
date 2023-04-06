@@ -1,4 +1,6 @@
+#include "main.h"
 #include "list.h"
+#include "queue.h"
 
 int main(int argc, char *argv[])
 {
@@ -54,7 +56,7 @@ int main(int argc, char *argv[])
 
             fscanf(fileRead, "%d", &p[j].points);
 
-            addAtEnd(&(teamList[i]), teamMates, teamName, p[j]);
+            addAtBeginning(&(teamList[i]), teamMates, teamName, p[j]);
     
         }
 
@@ -90,7 +92,21 @@ int main(int argc, char *argv[])
         //displayFileTeamName(argv[3], teamList[i]);
 
     //inchidere fis
-    fclose(fileRead); fclose(tasks); fclose(filePrint);
+    //fclose(fileRead); fclose(tasks); fclose(filePrint);
+    }
+    
+    if(Tasks[2] == 1){
+        resetFile(argv[3]);
+
+        // creez coada
+        Queue *teamListQueue = createQueue();
+
+        //bag in coada
+        for(int i = 0; i < numOfTeams; i++)
+            enQueue(teamListQueue, teamList[i]);
+
+        for(int i = 0; i < numOfTeams; i++)
+            deQueue(teamListQueue);
     }
 
     return 0;

@@ -1,0 +1,62 @@
+#include "main.h"
+#include "queue.h"
+
+Queue *createQueue(){
+	Queue *q;
+	q = (Queue *)malloc(sizeof(Queue));
+	if(q == NULL)
+		return NULL;
+	q->front = q->rear = NULL;
+	return q;
+}
+
+void enQueue(Queue *q, Team *v){
+	Team *newNode = (Team *)malloc(sizeof(Team));
+
+    strcpy(newNode->teamName, v->teamName);
+    newNode->teamMates = v->teamMates;
+    newNode->totalPoints = v->totalPoints;
+    strcpy(newNode->val.firstName, v->val.firstName);
+    strcpy(newNode->val.secondName, v->val.secondName);
+	newNode->val.points = v->val.points;
+
+	newNode->next = NULL;
+	if(q->rear == NULL)
+		q->rear = newNode;
+	else
+	{
+		(q->rear)->next = newNode;
+		(q->rear) = newNode;
+	}
+	if(q->front == NULL)
+		q->front = q->rear;
+}
+
+Team *deQueue(Queue *q){
+	Queue aux;
+	Team *d = (Team *)malloc(sizeof(Team));
+
+	if(isEmpty(q) == 0)
+		//return INT_MIN;
+		//return -2147483648;
+
+	aux.front = q->front;
+
+	strcpy(d->teamName, aux.front->teamName);
+	d->teamMates = aux.front->teamMates;
+	d->totalPoints = aux.front->totalPoints;
+	strcpy(d->val.firstName, aux.front->val.firstName);
+	strcpy(d->val.secondName, aux.front->val.secondName);
+	d->val.points = aux.front->val.points;
+
+	d->val = aux.front->val;
+	q->front = (q->front)->next;
+
+	free(aux.front);
+	
+	return d;
+}
+
+int isEmpty(Queue *q){
+	return(q->front == NULL);
+}

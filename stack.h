@@ -1,0 +1,1 @@
+void push(Team **top, Team *v);

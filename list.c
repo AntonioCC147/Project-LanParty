@@ -1,3 +1,4 @@
+#include "main.h"
 #include "list.h"
 
 void addAtBeginning(Team **head, int teamMates, char *teamName, Player v)
@@ -41,14 +42,11 @@ void addAtEnd(Team **head, int teamMates, char *teamName, Player v)
 
     newTeam->next = NULL;
 
-    if (*head == NULL)
-    {
+    if(*head == NULL){
         addAtBeginning(head, teamMates, teamName, v);
     }
-    else
-    {
-        while (aux->next != NULL)
-        {
+    else{
+        while(aux->next != NULL){
             aux = aux->next;
         }
         aux->next = newTeam;
@@ -118,8 +116,6 @@ Team* lowestPoints(Team **teamList, int numOfTeams){
     //printf("%s %f ", teamList[index]->teamName, teamList[index]->totalPoints);
     return teamList[index];
 }
-
-
 
 void deleteElement(Team **head, char *teamNameDelete)
 {
