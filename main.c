@@ -102,9 +102,13 @@ int main(int argc, char *argv[])
             enQueue(teamListQueue, teamList[i]);
 
         //for de la 0 la numOfTeams in care iau 2 echipe cu dequeue si le bag in lista
-            deQueue(teamListQueue);
+        for(int i = 0; i < numOfTeams; i+=2){
+            Team *team1 = deQueue(teamListQueue);
+            Team *team2 = deQueue(teamListQueue);
+            //if(team1->totalPoints > team2->totalPoints) ??
+        }
             //if()
-        Queue *firstTeam, *secondTeam;
+        //Stack *firstTeam, *secondTeam;
     }
 
     return 0;

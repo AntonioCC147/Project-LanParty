@@ -41,16 +41,20 @@ Team *deQueue(Queue *q){
 	Queue aux;
 	Team *d = (Team *)malloc(sizeof(Team));
 
-	if(isEmpty(q) == 0)
-		//return INT_MIN;
-		//return -2147483648;
+	//if(isEmpty(q) == 0)
+		//return 0;
 
 	aux.front = q->front;
 
+	d->teamName = (char *)malloc(strlen(aux.front->teamName) + 1);
 	strcpy(d->teamName, aux.front->teamName);
+
 	d->teamMates = aux.front->teamMates;
 	d->totalPoints = aux.front->totalPoints;
+
+	d->val.firstName = (char *)malloc(strlen(aux.front->val.firstName) + 1);
 	strcpy(d->val.firstName, aux.front->val.firstName);
+	d->val.secondName = (char *)malloc(strlen(aux.front->val.secondName) + 1);
 	strcpy(d->val.secondName, aux.front->val.secondName);
 	d->val.points = aux.front->val.points;
 
