@@ -66,6 +66,6 @@ Team *deQueue(Queue *q){
 	return d;
 }
 
-int isEmpty(Queue *q){
+int isEmptyQueue(Queue *q){
 	return(q->front == NULL);
 }

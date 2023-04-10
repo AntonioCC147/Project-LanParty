@@ -5,6 +5,8 @@ typedef struct Queue{
 }Queue;
 
 Queue *createQueue();
+
 void enQueue(Queue *q, Team *v);
 Team *deQueue(Queue *q);
-int isEmpty(Queue *q);
+
+int isEmptyQueue(Queue *q);

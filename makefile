@@ -1,4 +1,4 @@
 build:
-	gcc main.c list.c queue.c stack.c -o lanparty
+	gcc main.c list.c queue.c stack.c -o lanParty
 run:
-	./lanparty c.in d.in r.out
+	./lanParty c.in d.in r.out

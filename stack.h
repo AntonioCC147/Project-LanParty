@@ -1,1 +1,4 @@
-void push(Team **top, Team *v);
+void createStack(Team **top, Team *v);
+
+int isEmptyStack(Team *top);
+void deleteStack(Team **top);

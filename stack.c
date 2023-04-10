@@ -1,7 +1,7 @@
 #include "main.h"
 #include "stack.h"
 
-void push(Team **top, Team *v){
+void createStack(Team **top, Team *v){
 	Team *newNode = (Team *)malloc(sizeof(Team));
 
     newNode->teamMates = v->teamMates;
@@ -20,4 +20,28 @@ void push(Team **top, Team *v){
 	newNode->val = v->val;
 	newNode->next = *top;
 	*top = newNode;
+}
+
+int isEmptyStack(Team *top){
+	return top == NULL;
+}
+
+void deleteStack(Team **top){
+	Team *topcopy;
+
+    while (*top != NULL)
+    {
+        topcopy = (*top)->next;
+        free(*top);
+        *top = topcopy;
+    }
+    *top = NULL;
+	
+
+	/*
+	while (!isEmptyStack(*top))
+		temp = *top;
+	*top = (*top)->next;
+	free(temp);
+	*/
 }

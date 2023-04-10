@@ -1,6 +1,7 @@
 #include "main.h"
 #include "list.h"
 #include "queue.h"
+#include "stack.h"
 
 int main(int argc, char *argv[])
 {
@@ -101,15 +102,38 @@ int main(int argc, char *argv[])
         for(int i = 0; i < numOfTeams; i++)
             enQueue(teamListQueue, teamList[i]);
 
+        //creez winer si loser
+        Team *winnerTeam, *defeteadTeam;
+
         //for de la 0 la numOfTeams in care iau 2 echipe cu dequeue si le bag in lista
         for(int i = 0; i < numOfTeams; i+=2){
-            Team *team1 = deQueue(teamListQueue);
-            Team *team2 = deQueue(teamListQueue);
-            //if(team1->totalPoints > team2->totalPoints) ??
+            Team *firstTeam = deQueue(teamListQueue);
+            Team *secondTeam = deQueue(teamListQueue);
+
+            if(firstTeam->totalPoints >= secondTeam->totalPoints){
+                (firstTeam->totalPoints)++;
+                createStack(&winnerTeam, firstTeam);
+                createStack(&defeteadTeam, secondTeam);
+            }
+            else{
+                (secondTeam->totalPoints)++;
+                createStack(&winnerTeam, secondTeam);
+                createStack(&defeteadTeam, firstTeam);
+            }
         }
-            //if()
-        //Stack *firstTeam, *secondTeam;
+
+        deleteStack(&defeteadTeam);
+
+        /*
+        fprintf(file, "\n--- ROUND NO:%d\n", roundNumber);
+        fprintf(file, "%-33s-%33s\n", match->firstTeam->name, match->secondTeam->name);
+        */
     }
+
+    //eliberare de memorie
+    for(int i = 0; i < numOfTeams; i++)
+        free(teamList[i]);
+    free(teamList);
 
     return 0;
 }
