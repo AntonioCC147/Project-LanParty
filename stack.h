@@ -13,3 +13,5 @@ void printStack(Stack *top);
 int isEmptyStack(Team *top);
 
 void deleteStack(Stack **top);
+
+void displayTeamOnFile(char *fileName, char *firstTeamName, char *secondTeamName);

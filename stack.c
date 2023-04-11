@@ -74,3 +74,13 @@ void deleteStack(Stack **top){
     }
     *top = NULL;
 }
+
+void displayTeamOnFile(char *fileName, char *firstTeamName, char *secondTeamName){
+    FILE *file = fopen(fileName, "ab");
+
+    fprintf(file, "%-33s - %33s\n", firstTeamName, secondTeamName);
+
+    //fprintf(file, "%-3s-%3s bla bla bla bla", firstTeamName, secondTeamName);
+
+    fclose(file);
+}

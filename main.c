@@ -95,21 +95,26 @@ int main(int argc, char *argv[])
 
         // creez coada
         Queue *teamListQueue = createQueue();
+        //nr runde
+        int roundContor = 1;
 
         //bag in coada
-        for(int i = 0; i < numOfTeams; i++)
+        for(int i = numOfTeams - 1; i >= 0; i--)
             enQueue(teamListQueue, teamList[i]);
 
         //creez winer si loser
         Stack *winnerTeam, *defeatedTeam;
 
         //while(numOfTeams > 8){
-            fprintf(filePrint, "\n--- ROUND NO:%d\n", numOfTeams);
+            fprintf(filePrint, "\n--- ROUND NO:%d\n", roundContor); fclose(filePrint); //bug, fix it
 
             //for de la 0 la numOfTeams in care iau 2 echipe cu dequeue si le bag in lista
             for(int i = 0; i < numOfTeams; i+=2){
                 Team *firstTeam = deQueue(teamListQueue);
                 Team *secondTeam = deQueue(teamListQueue);
+
+                displayTeamOnFile(argv[3], firstTeam->teamName, secondTeam->teamName);
+                //SAU fprintf(filePrint, "%-33s-%33s\n", firstTeam->teamName, secondTeam->teamName);
 
                 if(firstTeam->totalPoints >= secondTeam->totalPoints){
                     (firstTeam->totalPoints)++;
