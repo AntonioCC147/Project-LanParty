@@ -1,7 +1,5 @@
 #include "main.h"
-#include "list.h"
 #include "queue.h"
-#include "stack.h"
 
 int main(int argc, char *argv[])
 {
@@ -91,38 +89,47 @@ int main(int argc, char *argv[])
     //inchidere fis
     //fclose(fileRead); fclose(tasks); fclose(filePrint);
     }
-    
-    if(Tasks[2] == 1){
-        resetFile(argv[3]);
 
+    if(Tasks[2] == 1){
         // creez coada
         Queue *teamListQueue = createQueue();
 
         //bag in coada
-        for(int i = 0; i < numOfTeams; i++)
-            enQueue(teamListQueue, teamList[i]);
+        //for(int i = 0; i < numOfTeams; i++)
+            //enQueue(teamListQueue, teamList[i]);
 
         //creez winer si loser
-        Team *winnerTeam, *defeteadTeam;
+        Stack *winnerTeam, *defeatedTeam;
 
-        //for de la 0 la numOfTeams in care iau 2 echipe cu dequeue si le bag in lista
-        for(int i = 0; i < numOfTeams; i+=2){
-            Team *firstTeam = deQueue(teamListQueue);
-            Team *secondTeam = deQueue(teamListQueue);
+        //while(numOfTeams > 8){
+            fprintf(filePrint, "\n--- ROUND NO:%d\n", numOfTeams);
 
-            if(firstTeam->totalPoints >= secondTeam->totalPoints){
-                (firstTeam->totalPoints)++;
-                createStack(&winnerTeam, firstTeam);
-                createStack(&defeteadTeam, secondTeam);
+            //for de la 0 la numOfTeams in care iau 2 echipe cu dequeue si le bag in lista
+            for(int i = 0; i < numOfTeams; i+=2){
+                Team *firstTeam = deQueue(teamListQueue);
+                Team *secondTeam = deQueue(teamListQueue);
+
+                if(firstTeam->totalPoints >= secondTeam->totalPoints){
+                    (firstTeam->totalPoints)++;
+                    createStack(&winnerTeam, firstTeam);
+                    createStack(&defeatedTeam, secondTeam);
+                }
+                else{
+                    (secondTeam->totalPoints)++;
+                    createStack(&winnerTeam, secondTeam);
+                    createStack(&defeatedTeam, firstTeam);
+                }
             }
-            else{
-                (secondTeam->totalPoints)++;
-                createStack(&winnerTeam, secondTeam);
-                createStack(&defeteadTeam, firstTeam);
-            }
-        }
+                
+            //sterg loserii
+            deleteStack(&defeatedTeam);
+            //deleteQueue(teamListQueue);
+            //enQueueWinnerTeam(teamListQueue, winnerTeam);
 
-        deleteStack(&defeteadTeam);
+            numOfTeams = numOfTeams / 2;
+        //}
+
+        //printStack(winnerTeam);
 
         /*
         fprintf(file, "\n--- ROUND NO:%d\n", roundNumber);
@@ -131,9 +138,11 @@ int main(int argc, char *argv[])
     }
 
     //eliberare de memorie
+    /*
     for(int i = 0; i < numOfTeams; i++)
         free(teamList[i]);
     free(teamList);
+    */
 
     return 0;
 }

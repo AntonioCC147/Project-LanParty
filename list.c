@@ -175,10 +175,6 @@ void displayFileTeamName(char *fileName, Team *head)
     FILE *file = fopen(fileName, "ab");
 
     fprintf(file, "%s", head->teamName);
-    // while(head != NULL){
-    //     fprintf(file, "%s %s %d\n", head->val.firstName, head->val.secondName, head->val.points);
-    //     head = head->next;
-    // }
 
     fclose(file);
 }

@@ -3,6 +3,7 @@
 #include <string.h>
 
 #define INT_MIN -2147483648
+#define finalTeams 8
 
 typedef struct Player{
     char *firstName;
@@ -14,6 +15,7 @@ typedef struct Team{
     int teamMates;
     char *teamName;
     float totalPoints;
+    
     Player val;
     struct Team *next;
 }Team;

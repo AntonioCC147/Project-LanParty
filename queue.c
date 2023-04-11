@@ -37,12 +37,69 @@ void enQueue(Queue *q, Team *v){
 		q->front = q->rear;
 }
 
+void enQueueWinnerTeam(Queue *q, Stack *s){
+    if (q == NULL || s == NULL || s->val.teamName == NULL || s->val.val.firstName == NULL || s->val.val.secondName == NULL) {
+        // Handle NULL pointers, e.g., return an error or exit gracefully
+        printf("Invalid input\n");
+        return;
+    }
+
+    Team *newNode = (Team *)malloc(sizeof(Team));
+    if (newNode == NULL) {
+        printf("Memory allocation failed\n");
+        return;
+    }
+
+    newNode->teamMates = s->val.teamMates;
+
+    newNode->teamName = (char *)malloc(strlen(s->val.teamName) + 1);
+    if (newNode->teamName == NULL) {
+        free(newNode); // Free previously allocated memory
+        printf("Memory allocation failed\n");
+        return;
+    }
+    strcpy(newNode->teamName, s->val.teamName);
+
+    newNode->totalPoints = s->val.totalPoints;
+
+    newNode->val.firstName = (char *)malloc(strlen(s->val.val.firstName) + 1);
+    if (newNode->val.firstName == NULL) {
+        free(newNode->teamName); // Free previously allocated memory
+        free(newNode); // Free previously allocated memory
+        printf("Memory allocation failed\n");
+        return;
+    }
+    strcpy(newNode->val.firstName, s->val.val.firstName);
+
+    newNode->val.secondName = (char *)malloc(strlen(s->val.val.secondName) + 1);
+    if (newNode->val.secondName == NULL) {
+        free(newNode->val.firstName); // Free previously allocated memory
+        free(newNode->teamName); // Free previously allocated memory
+        free(newNode); // Free previously allocated memory
+        printf("Memory allocation failed\n");
+        return;
+    }
+    strcpy(newNode->val.secondName, s->val.val.secondName);
+
+    newNode->val.points = s->val.val.points;
+
+    newNode->next = NULL;
+
+    if (q->rear == NULL)
+        q->rear = newNode;
+    else {
+        (q->rear)->next = newNode;
+        q->rear = newNode;
+    }
+
+    if (q->front == NULL)
+        q->front = q->rear;
+}
+
+
 Team *deQueue(Queue *q){
 	Queue aux;
 	Team *d = (Team *)malloc(sizeof(Team));
-
-	//if(isEmpty(q) == 0)
-		//return 0;
 
 	aux.front = q->front;
 
@@ -68,4 +125,31 @@ Team *deQueue(Queue *q){
 
 int isEmptyQueue(Queue *q){
 	return(q->front == NULL);
+}
+
+void deleteQueue(Queue *q) {
+    if (q == NULL) {
+        return; // Nothing to delete
+    }
+
+    Team *current = q->front;
+    Team *next;
+
+    while (current != NULL) {
+        next = current->next;
+
+        // Free dynamically allocated strings in the Team struct
+        free(current->teamName);
+        free(current->val.firstName);
+        free(current->val.secondName);
+
+        // Free the Team struct itself
+        free(current);
+
+        current = next;
+    }
+
+    // Set front and rear pointers to NULL to indicate an empty queue
+    q->front = NULL;
+    q->rear = NULL;
 }
