@@ -67,6 +67,8 @@ int main(int argc, char *argv[])
         //afisare task1
         for(int i = numOfTeams - 1; i >= 0; i--)
             displayFileTeamName(argv[3], teamList[i]);
+
+        fclose(filePrint);
     }
 
     if(Tasks[1] == 1){
@@ -85,18 +87,18 @@ int main(int argc, char *argv[])
 
         for(int i = numOfTeams - 1; i >= 0; i--)
             displayFileTeamName(argv[3], teamList[i]);
-
-    //inchidere fis
-    //fclose(fileRead); fclose(tasks); fclose(filePrint);
     }
-
+    
     if(Tasks[2] == 1){
+        //redeschid fisierul
+        filePrint = fopen(argv[3], "ab");
+
         // creez coada
         Queue *teamListQueue = createQueue();
 
         //bag in coada
-        //for(int i = 0; i < numOfTeams; i++)
-            //enQueue(teamListQueue, teamList[i]);
+        for(int i = 0; i < numOfTeams; i++)
+            enQueue(teamListQueue, teamList[i]);
 
         //creez winer si loser
         Stack *winnerTeam, *defeatedTeam;
@@ -122,12 +124,12 @@ int main(int argc, char *argv[])
             }
                 
             //sterg loserii
-            deleteStack(&defeatedTeam);
+            //deleteStack(&defeatedTeam);
             //deleteQueue(teamListQueue);
             //enQueueWinnerTeam(teamListQueue, winnerTeam);
 
             numOfTeams = numOfTeams / 2;
-        //}
+        }
 
         //printStack(winnerTeam);
 
@@ -135,7 +137,7 @@ int main(int argc, char *argv[])
         fprintf(file, "\n--- ROUND NO:%d\n", roundNumber);
         fprintf(file, "%-33s-%33s\n", match->firstTeam->name, match->secondTeam->name);
         */
-    }
+    //}
 
     //eliberare de memorie
     /*
