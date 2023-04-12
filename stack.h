@@ -9,9 +9,8 @@ void createStack(Stack **top, Team *v);
 
 void printStack(Stack *top);
 
-
 int isEmptyStack(Team *top);
 
 void deleteStack(Stack **top);
 
-void displayTeamOnFile(char *fileName, char *firstTeamName, char *secondTeamName);
+void displayMatchesOnFile(char *fileName, char *firstTeamName, char *secondTeamName);

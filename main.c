@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
         for(int i = numOfTeams - 1; i >= 0; i--)
             displayFileTeamName(argv[3], teamList[i]);
 
-        fclose(filePrint);
+        fclose(filePrint); //de sters daaca nu se modifica ceva
     }
 
     if(Tasks[1] == 1){
@@ -109,12 +109,14 @@ int main(int argc, char *argv[])
             fprintf(filePrint, "\n--- ROUND NO:%d\n", roundContor); fclose(filePrint); //bug, fix it
 
             //for de la 0 la numOfTeams in care iau 2 echipe cu dequeue si le bag in lista
+
+            filePrint = fopen(argv[3], "ab"); //sterge daca nu te ajuta / incurca
             for(int i = 0; i < numOfTeams; i+=2){
                 Team *firstTeam = deQueue(teamListQueue);
                 Team *secondTeam = deQueue(teamListQueue);
 
-                displayTeamOnFile(argv[3], firstTeam->teamName, secondTeam->teamName);
-                //SAU fprintf(filePrint, "%-33s-%33s\n", firstTeam->teamName, secondTeam->teamName);
+                displayMatchesOnFile(argv[3], firstTeam->teamName, secondTeam->teamName);
+                //fprintf(filePrint, "%-33s-%33s", firstTeam->teamName, secondTeam->teamName);
 
                 if(firstTeam->totalPoints >= secondTeam->totalPoints){
                     (firstTeam->totalPoints)++;

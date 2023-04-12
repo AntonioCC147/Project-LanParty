@@ -75,12 +75,21 @@ void deleteStack(Stack **top){
     *top = NULL;
 }
 
-void displayTeamOnFile(char *fileName, char *firstTeamName, char *secondTeamName){
+void displayMatchesOnFile(char *fileName, char *firstTeamName, char *secondTeamName){
     FILE *file = fopen(fileName, "ab");
 
-    fprintf(file, "%-33s - %33s\n", firstTeamName, secondTeamName);
+    firstTeamName[strlen(firstTeamName)-2] = '\0'; //idk what is this, but it's fix my problem with the unwanted space
+    int lenFirstTeamName = strlen(firstTeamName), lenSecondTeamName = strlen(secondTeamName);
 
-    //fprintf(file, "%-3s-%3s bla bla bla bla", firstTeamName, secondTeamName);
+    fprintf(file, "%s", firstTeamName);
+    for(int i = 0; i < 33-lenFirstTeamName; i++)
+        fprintf(file, " ");
+
+    fprintf(file, "-");
+
+    for(int i = 0; i < 35-lenSecondTeamName; i++)
+        fprintf(file, " ");
+    fprintf(file, "%s", secondTeamName);
 
     fclose(file);
 }
