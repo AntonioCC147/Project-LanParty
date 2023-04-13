@@ -111,43 +111,43 @@ int main(int argc, char *argv[])
                 //displayMatchesOnFile(argv[3], firstTeam->teamName, secondTeam->teamName); foloseste asta sau aia de mai jos
 
                 firstTeam->teamName[strlen(firstTeam->teamName)-2] = '\0'; //idk what is this, but it's fix my problem with the unwanted space
-                int lenFirstTeamName = strlen(firstTeam->teamName), lenSecondTeamName = strlen(secondTeam->teamName);
-
-                fprintf(filePrint, "%s", firstTeam->teamName);
-                for(int j = 0; j < 33-lenFirstTeamName; j++)
-                    fprintf(filePrint, " ");
-
-                fprintf(filePrint, "-");
-
-                for(int j = 0; j < 35-lenSecondTeamName; j++)
-                    fprintf(filePrint, " ");
-                fprintf(filePrint, "%s", secondTeam->teamName);
+                fprintf(filePrint, "%-33s-%33s", firstTeam->teamName, secondTeam->teamName);
 
                 fclose(filePrint);
 
                 if(firstTeam->totalPoints >= secondTeam->totalPoints){
-                    (firstTeam->totalPoints)++;
+                    (firstTeam->totalPoints) = firstTeam->totalPoints + 1.0;
                     createStack(&winnerTeam, firstTeam);
                     createStack(&defeatedTeam, secondTeam);
                 }
                 else{
-                    (secondTeam->totalPoints)++;
+                    (secondTeam->totalPoints) = secondTeam->totalPoints + 1.0;
                     createStack(&winnerTeam, secondTeam);
                     createStack(&defeatedTeam, firstTeam);
                 }
             }
 
             filePrint = fopen(argv[3], "ab");
-            fprintf(filePrint, "\nWINNERS OF ROUND NO:%d\n", roundContor); 
+            fprintf(filePrint, "\nWINNERS OF ROUND NO:%d\n", roundContor);
+
+            numOfTeams = numOfTeams / 2; roundContor++;
+
+            int indexWinners = 0;
+            Stack *winners = winnerTeam;
+            while(indexWinners < numOfTeams){
+                winners->val.teamName[strlen(winners->val.teamName)-2] = '\0';
+
+                fprintf(filePrint, "%s - %.2f\n", winners->val.teamName, winners->val.totalPoints);
+                winners=winners->next;
+                indexWinners++;
+            }
 
             //scrie aici afisarea, fa totul manual, fara functii
 
-            fclose(filePrint);
+            //fclose(filePrint); poate trb stearsa asta
 
             enQueueWinnerTeam(teamListQueue, winnerTeam);
             deleteStack(&defeatedTeam); deleteStack(&winnerTeam);
-
-            numOfTeams = numOfTeams / 2; roundContor++;
         }
     }
 
