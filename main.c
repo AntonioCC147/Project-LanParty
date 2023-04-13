@@ -102,12 +102,28 @@ int main(int argc, char *argv[])
         while(numOfTeams > 8){
             fprintf(filePrint, "\n--- ROUND NO:%d\n", roundContor); fclose(filePrint);
 
-            filePrint = fopen(argv[3], "ab");
+            
             for(int i = 0; i < numOfTeams; i+=2){
+                filePrint = fopen(argv[3], "ab");
                 Team *firstTeam = deQueue(teamListQueue);
                 Team *secondTeam = deQueue(teamListQueue);
 
-                displayMatchesOnFile(argv[3], firstTeam->teamName, secondTeam->teamName);
+                //displayMatchesOnFile(argv[3], firstTeam->teamName, secondTeam->teamName); foloseste asta sau aia de mai jos
+
+                firstTeam->teamName[strlen(firstTeam->teamName)-2] = '\0'; //idk what is this, but it's fix my problem with the unwanted space
+                int lenFirstTeamName = strlen(firstTeam->teamName), lenSecondTeamName = strlen(secondTeam->teamName);
+
+                fprintf(filePrint, "%s", firstTeam->teamName);
+                for(int j = 0; j < 33-lenFirstTeamName; j++)
+                    fprintf(filePrint, " ");
+
+                fprintf(filePrint, "-");
+
+                for(int j = 0; j < 35-lenSecondTeamName; j++)
+                    fprintf(filePrint, " ");
+                fprintf(filePrint, "%s", secondTeam->teamName);
+
+                fclose(filePrint);
 
                 if(firstTeam->totalPoints >= secondTeam->totalPoints){
                     (firstTeam->totalPoints)++;
