@@ -49,16 +49,6 @@ void createStack(Stack **top, Team *v) {
     (*top) = newNode;
 }
 
-
-void printStack(Stack *top) {
-    printf("Printing stack:\n");
-    while (top != NULL) {
-        printf("Team Name: %s\n", top->val.teamName);
-        top = top->next;
-        //top->next=top->next->next;
-    }
-}
-
 int isEmptyStack(Team *top){
 	return top == NULL;
 }
@@ -73,6 +63,14 @@ void deleteStack(Stack **top){
         *top = topcopy;
     }
     *top = NULL;
+}
+
+void displayStack(Stack *top) {
+    printf("Printing stack:\n");
+    while (top != NULL) {
+        printf("Team Name: %s\n", top->val.teamName);
+        top = top->next;
+    }
 }
 
 void displayMatchesOnFile(char *fileName, char *firstTeamName, char *secondTeamName){
@@ -92,4 +90,28 @@ void displayMatchesOnFile(char *fileName, char *firstTeamName, char *secondTeamN
     fprintf(file, "%s", secondTeamName);
 
     fclose(file);
+}
+
+void displayWinnerTeamOnFile(char *fileName, Stack *top, int roundContor) {
+    FILE *file = fopen(fileName, "ab");
+    fprintf(file, "\n\n\n\n\nWINNERS OF ROUND NO:%d\n", roundContor); 
+
+    while(top != NULL){
+        printf("%s - %.2f", top->val.teamName, top->val.totalPoints);
+        top=top->next;
+    }
+
+    fclose(file);
+}
+
+char* returnWinnerTeamName(Stack **top) {
+    Stack *newNode = (Stack *)malloc(sizeof(Stack));
+
+    newNode->next = (*top);
+    (*top) = newNode;
+
+    char* winnerTeamName = (char*)malloc(sizeof(newNode->val.teamName));
+    strcpy(winnerTeamName, newNode->val.teamName);
+
+    return winnerTeamName;
 }

@@ -160,16 +160,6 @@ void deleteList(Team **head)
     *head = NULL;
 }
 
-void display(Team *head)
-{
-    printf("%s", head->teamName);
-    while (head != NULL)
-    {
-        printf("%s %s %d\n", head->val.firstName, head->val.secondName, head->val.points);
-        head = head->next;
-    }
-}
-
 void displayFileTeamName(char *fileName, Team *head)
 {
     FILE *file = fopen(fileName, "ab");

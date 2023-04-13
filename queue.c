@@ -96,7 +96,6 @@ void enQueueWinnerTeam(Queue *q, Stack *s){
         q->front = q->rear;
 }
 
-
 Team *deQueue(Queue *q){
 	Queue aux;
 	Team *d = (Team *)malloc(sizeof(Team));

@@ -11,7 +11,6 @@ void eliminationTeams(Team **teamList, int *numofTeams, int totalTeamsAfterElimi
 void deleteElement(struct Team **head, char *teamNameDelete);
 void deleteList(Team **head);
 
-void display(Team *head);
 void displayFileTeamName(char *fileRead, Team *head);
 
 void resetFile(char *fileName);
