@@ -15,6 +15,7 @@ void createStack(Stack **top, Team *v) {
     }
 
     newNode->val.teamMates = v->teamMates;
+    newNode->val.totalPoints = v->totalPoints;
 
     newNode->val.teamName = (char *)malloc(strlen(v->teamName) + 1);
     if (newNode->val.teamName == NULL) {
@@ -71,37 +72,6 @@ void displayStack(Stack *top) {
         printf("Team Name: %s\n", top->val.teamName);
         top = top->next;
     }
-}
-
-void displayMatchesOnFile(char *fileName, char *firstTeamName, char *secondTeamName){
-    FILE *file = fopen(fileName, "ab");
-
-    firstTeamName[strlen(firstTeamName)-2] = '\0'; //idk what is this, but it's fix my problem with the unwanted space
-    int lenFirstTeamName = strlen(firstTeamName), lenSecondTeamName = strlen(secondTeamName);
-
-    fprintf(file, "%s", firstTeamName);
-    for(int i = 0; i < 33-lenFirstTeamName; i++)
-        fprintf(file, " ");
-
-    fprintf(file, "-");
-
-    for(int i = 0; i < 35-lenSecondTeamName; i++)
-        fprintf(file, " ");
-    fprintf(file, "%s", secondTeamName);
-
-    fclose(file);
-}
-
-void displayWinnerTeamOnFile(char *fileName, Stack *top, int roundContor) {
-    FILE *file = fopen(fileName, "ab");
-    fprintf(file, "\n\n\n\n\nWINNERS OF ROUND NO:%d\n", roundContor); 
-
-    while(top != NULL){
-        printf("%s - %.2f", top->val.teamName, top->val.totalPoints);
-        top=top->next;
-    }
-
-    fclose(file);
 }
 
 char* returnWinnerTeamName(Stack **top) {

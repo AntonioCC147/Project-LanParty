@@ -1,11 +1,13 @@
 #include "main.h"
 #include "list.h"
 
-void addAtBeginning(Team **head, int teamMates, char *teamName, Player v)
+void addAtBeginning(Team **head, char *teamName, int teamMates, int totalPoints, Player v)
 {
     Team *newTeam = (Team *)malloc(sizeof(Team));
 
     newTeam->teamMates = teamMates;
+
+    newTeam->totalPoints = totalPoints;
 
     newTeam->teamName = (char *)malloc(strlen(teamName) + 1); // allocate memory for the team name
     strcpy(newTeam->teamName, teamName);
@@ -22,12 +24,14 @@ void addAtBeginning(Team **head, int teamMates, char *teamName, Player v)
     *head = newTeam;
 }
 
-void addAtEnd(Team **head, int teamMates, char *teamName, Player v)
+void addAtEnd(Team **head, char *teamName, int teamMates, int totalPoints, Player v)
 {
     Team *aux = *head;
     Team *newTeam = (Team *)malloc(sizeof(Team));
 
     newTeam->teamMates = teamMates;
+
+    newTeam->totalPoints = totalPoints;
 
     newTeam->teamName = (char *)malloc(strlen(teamName) + 1); // allocate memory for the team name
     strcpy(newTeam->teamName, teamName);
@@ -43,7 +47,7 @@ void addAtEnd(Team **head, int teamMates, char *teamName, Player v)
     newTeam->next = NULL;
 
     if(*head == NULL){
-        addAtBeginning(head, teamMates, teamName, v);
+        addAtBeginning(head, teamName, teamMates, totalPoints, v);
     }
     else{
         while(aux->next != NULL){

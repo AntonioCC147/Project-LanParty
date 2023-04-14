@@ -112,6 +112,7 @@ Team *deQueue(Queue *q){
 	strcpy(d->val.firstName, aux.front->val.firstName);
 	d->val.secondName = (char *)malloc(strlen(aux.front->val.secondName) + 1);
 	strcpy(d->val.secondName, aux.front->val.secondName);
+    
 	d->val.points = aux.front->val.points;
 
 	d->val = aux.front->val;

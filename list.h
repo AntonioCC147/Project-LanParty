@@ -1,5 +1,5 @@
-void addAtBeginning(Team **head, int teamMates, char *teamName, Player v);
-void addAtEnd(Team **head, int teamMates, char *teamName, Player v);
+void addAtBeginning(Team **head, char *teamName, int teamMates, int totalPoints, Player v);
+void addAtEnd(Team **head, char *teamName, int teamMates, int totalPoints, Player v);
 
 void averagePoints(Team **teamList, int numOfTeams);
 Team* lowestPoints(Team **teamList, int numOfTeams);

@@ -4,20 +4,20 @@
 int main(int argc, char *argv[])
 {
     //definesc fisiere
-    FILE *tasks = fopen(argv[1], "rb");
+    FILE *tasks = fopen(argv[1], "rt");
     if(tasks == NULL){
         printf("Error! The file cannot be opened."); exit(1);
     }
     int Tasks[5] = {0};
-    for(int i = 0; i < 5; i++)
+    for(int i = 0; i < 5; i++) // modifica acel 5
         fscanf(tasks, "%d", &Tasks[i]);
 
-    FILE *fileRead = fopen(argv[2], "rb");
+    FILE *fileRead = fopen(argv[2], "rt");
     if(fileRead == NULL){
         printf("Error! The file cannot be opened."); exit(1);
     }
 
-    FILE *filePrint = fopen(argv[3], "wb");
+    FILE *filePrint = fopen(argv[3], "wt");
     if(filePrint == NULL){
         printf("Error! The file cannot be opened."); exit(1);
     }
@@ -45,17 +45,18 @@ int main(int argc, char *argv[])
 
         for(int j = 0; j < teamMates; j++){
 
-            fscanf(fileRead, "%s", stringHelp);
+            
+            fscanf(fileRead, "%s%c", stringHelp, &spaceDistroyer);
             p[j].firstName = malloc(strlen(stringHelp) + 1); // allocate memory for the first name
             strcpy(p[j].firstName, stringHelp);
 
-            fscanf(fileRead, "%s", stringHelp);
+            fscanf(fileRead, "%s%c", stringHelp, &spaceDistroyer);
             p[j].secondName = malloc(strlen(stringHelp) + 1); // allocate memory for the second name
             strcpy(p[j].secondName, stringHelp);
 
             fscanf(fileRead, "%d", &p[j].points);
 
-            addAtBeginning(&(teamList[i]), teamMates, teamName, p[j]);
+            addAtBeginning(&(teamList[i]), teamName, teamMates, 0.0, p[j]);
     
         }
 
@@ -65,14 +66,18 @@ int main(int argc, char *argv[])
 
     if(Tasks[0] == 1){
         //afisare task1
-        for(int i = numOfTeams - 1; i >= 0; i--)
-            displayFileTeamName(argv[3], teamList[i]);
+        for(int i = numOfTeams - 1; i >= 0; i--){
+            //displayFileTeamName(argv[3], teamList[i]); -------- READU INAPOI SI STERGE JOS DACA NU MERGE
+            (teamList[i]->teamName)[strlen(teamList[i]->teamName)-2] = '\0';
+            fprintf(filePrint, "%s\n", teamList[i]->teamName);
+        }
 
-        //fclose(filePrint); //de sters daaca nu se modifica ceva
+        fclose(filePrint); //de sters daaca nu se modifica ceva
     }
 
     if(Tasks[1] == 1){
-        resetFile(argv[3]);
+        //resetFile(argv[3]);
+        filePrint = fopen(argv[3], "wt");
 
         //media task2
         averagePoints(teamList, numOfTeams);
@@ -86,11 +91,13 @@ int main(int argc, char *argv[])
         eliminationTeams(teamList, &numOfTeams, totalTeamsAfterElimination);
 
         for(int i = numOfTeams - 1; i >= 0; i--)
-            displayFileTeamName(argv[3], teamList[i]);
+            //displayFileTeamName(argv[3], teamList[i]); -------- READU INAPOI SI STERGE JOS DACA NU MERGE
+            fprintf(filePrint, "%s\n", teamList[i]->teamName);
+        fclose(filePrint);
     }
     
     if(Tasks[2] == 1){
-        filePrint = fopen(argv[3], "ab");
+        filePrint = fopen(argv[3], "at");
 
         Queue *teamListQueue = createQueue();
         int roundContor = 1;
@@ -100,20 +107,19 @@ int main(int argc, char *argv[])
 
         Stack *winnerTeam, *defeatedTeam;
         while(numOfTeams > 8){
-            fprintf(filePrint, "\n--- ROUND NO:%d\n", roundContor); fclose(filePrint);
-
+            fprintf(filePrint, "\n--- ROUND NO:%d\n", roundContor); fclose(filePrint); //-- READU
             
             for(int i = 0; i < numOfTeams; i+=2){
-                filePrint = fopen(argv[3], "ab");
+                filePrint = fopen(argv[3], "at"); //- READU
                 Team *firstTeam = deQueue(teamListQueue);
                 Team *secondTeam = deQueue(teamListQueue);
 
                 //displayMatchesOnFile(argv[3], firstTeam->teamName, secondTeam->teamName); foloseste asta sau aia de mai jos
 
-                firstTeam->teamName[strlen(firstTeam->teamName)-2] = '\0'; //idk what is this, but it's fix my problem with the unwanted space
-                fprintf(filePrint, "%-33s-%33s", firstTeam->teamName, secondTeam->teamName);
+                //idk what is this, but it's fix my problem with the unwanted space
+                fprintf(filePrint, "%-33s-%33s\n", firstTeam->teamName, secondTeam->teamName);
 
-                fclose(filePrint);
+                //fclose(filePrint);
 
                 if(firstTeam->totalPoints >= secondTeam->totalPoints){
                     (firstTeam->totalPoints) = firstTeam->totalPoints + 1.0;
@@ -125,21 +131,24 @@ int main(int argc, char *argv[])
                     createStack(&winnerTeam, secondTeam);
                     createStack(&defeatedTeam, firstTeam);
                 }
+                fclose(filePrint);
             }
 
-            filePrint = fopen(argv[3], "ab");
-            fprintf(filePrint, "\nWINNERS OF ROUND NO:%d\n", roundContor);
+            filePrint = fopen(argv[3], "at"); //-- READU
+            fprintf(filePrint, "\nWINNERS OF ROUND NO:%d\n", roundContor); fclose(filePrint);
 
             numOfTeams = numOfTeams / 2; roundContor++;
 
             int indexWinners = 0;
             Stack *winners = winnerTeam;
             while(indexWinners < numOfTeams){
-                winners->val.teamName[strlen(winners->val.teamName)-2] = '\0';
+                filePrint = fopen(argv[3], "at");
 
-                fprintf(filePrint, "%s - %.2f\n", winners->val.teamName, winners->val.totalPoints);
+                fprintf(filePrint, "%-34s-  %.2f\n", winners->val.teamName, winners->val.totalPoints);
                 winners=winners->next;
                 indexWinners++;
+
+                fclose(filePrint);
             }
 
             //scrie aici afisarea, fa totul manual, fara functii
