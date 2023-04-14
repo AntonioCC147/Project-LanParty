@@ -9,7 +9,7 @@ void addAtBeginning(Team **head, char *teamName, int teamMates, int totalPoints,
 
     newTeam->totalPoints = totalPoints;
 
-    newTeam->teamName = (char *)malloc(strlen(teamName) + 1); // allocate memory for the team name
+    newTeam->teamName = (char *)malloc(strlen(teamName) +1); // allocate memory for the team name
     strcpy(newTeam->teamName, teamName);
 
     newTeam->val.firstName = (char *)malloc(strlen(v.firstName) + 1); // allocate memory for the first name

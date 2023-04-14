@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 
         //eliminare task2
         int totalTeamsAfterElimination = 2;
-        while(totalTeamsAfterElimination < numOfTeams)
+        while(totalTeamsAfterElimination <= numOfTeams)
             totalTeamsAfterElimination *= 2;
         totalTeamsAfterElimination /= 2;
 
@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
             enQueue(teamListQueue, teamList[i]);
 
         Stack *winnerTeam, *defeatedTeam;
-        while(numOfTeams > 8){
+        while(numOfTeams > 1){
             filePrint = fopen(argv[3], "at"); fprintf(filePrint, "\n--- ROUND NO:%d\n", roundContor); fclose(filePrint);
             
             for(int i = 0; i < numOfTeams; i+=2){
@@ -112,9 +112,12 @@ int main(int argc, char *argv[])
                 Team *firstTeam = deQueue(teamListQueue);
                 Team *secondTeam = deQueue(teamListQueue);
 
-                fprintf(filePrint, "%-33s-%33s\n", firstTeam->teamName, secondTeam->teamName);
+                if((secondTeam->teamName)[strlen(secondTeam->teamName)-1] == 32)
+                    (secondTeam->teamName)[strlen(secondTeam->teamName)-1] = '\0';
+                fprintf(filePrint, "%-33s-%33s\n", firstTeam->teamName, secondTeam->teamName); //fixing the problem with the
+                                                                                               // extra spaces in files that we read
 
-                if(firstTeam->totalPoints >= secondTeam->totalPoints){
+                if(firstTeam->totalPoints > secondTeam->totalPoints){
                     (firstTeam->totalPoints) = firstTeam->totalPoints + 1.0;
                     createStack(&winnerTeam, firstTeam);
                     createStack(&defeatedTeam, secondTeam);
@@ -148,27 +151,13 @@ int main(int argc, char *argv[])
             }
 
             free(teamListQueue);
-            /*
-            Stack *ceva = winnerTeam;
-
-            while(ceva){
-                enQueueWinnerTeam(teamListQueue, winnerTeam);
-                ceva = ceva->next;
-            }
-            free(ceva);
-            */
-            
-            /*
             teamListQueue = createQueue();
-            //enQueueWinnerTeam(teamListQueue, winnerTeam);
 
-            Stack *ceva = winnerTeam;
-            while(ceva){
-                enQueueWinnerTeam(teamListQueue, ceva);
-                ceva = ceva->next;
+            //perfect, dar altfel facut enque-ul
+            for(int j = numOfTeams - 1; j >= 0; j--){
+                enQueue(teamListQueue, winnerTeam);
+                winnerTeam=winnerTeam->next;
             }
-            deleteStack(&defeatedTeam); deleteStack(&winnerTeam);
-            */
         }
     }
 

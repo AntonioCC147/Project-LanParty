@@ -17,7 +17,7 @@ void createStack(Stack **top, Team *v) {
     newNode->val.teamMates = v->teamMates;
     newNode->val.totalPoints = v->totalPoints;
 
-    newNode->val.teamName = (char *)malloc(strlen(v->teamName) + 1);
+    newNode->val.teamName = (char *)malloc(strlen(v->teamName));
     strcpy(newNode->val.teamName, v->teamName);
 
     newNode->val.val.firstName = (char *)malloc(strlen(v->val.firstName) + 1);

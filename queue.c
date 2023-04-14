@@ -41,7 +41,7 @@ void enQueue(Queue *q, Team *v){
 void enQueueWinnerTeam(Queue *q, Stack *s){
     Team *newTeam = (Team *)malloc(sizeof(Team));
 
-    newTeam->teamName = (char *)malloc(strlen(s->val.teamName) + 1);
+    newTeam->teamName = (char *)malloc(strlen(s->val.teamName));
     strcpy(newTeam->teamName, s->val.teamName);
 
     newTeam->teamMates = s->val.teamMates;
