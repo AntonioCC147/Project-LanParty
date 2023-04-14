@@ -21,6 +21,7 @@ void enQueue(Queue *q, Team *v){
 
 	newNode->val.firstName = (char *)malloc(strlen(v->val.firstName) + 1);
     strcpy(newNode->val.firstName, v->val.firstName);
+
 	newNode->val.secondName = (char *)malloc(strlen(v->val.secondName) + 1);
     strcpy(newNode->val.secondName, v->val.secondName);
 
@@ -38,62 +39,24 @@ void enQueue(Queue *q, Team *v){
 }
 
 void enQueueWinnerTeam(Queue *q, Stack *s){
-    if (q == NULL || s == NULL || s->val.teamName == NULL || s->val.val.firstName == NULL || s->val.val.secondName == NULL) {
-        // Handle NULL pointers, e.g., return an error or exit gracefully
-        printf("Invalid input\n");
-        return;
-    }
+    Team *newTeam = (Team *)malloc(sizeof(Team));
 
-    Team *newNode = (Team *)malloc(sizeof(Team));
-    if (newNode == NULL) {
-        printf("Memory allocation failed\n");
-        return;
-    }
+    newTeam->teamName = (char *)malloc(strlen(s->val.teamName) + 1);
+    strcpy(newTeam->teamName, s->val.teamName);
 
-    newNode->teamMates = s->val.teamMates;
+    newTeam->teamMates = s->val.teamMates;
+    newTeam->totalPoints = s->val.totalPoints;
 
-    newNode->teamName = (char *)malloc(strlen(s->val.teamName) + 1);
-    if (newNode->teamName == NULL) {
-        free(newNode); // Free previously allocated memory
-        printf("Memory allocation failed\n");
-        return;
-    }
-    strcpy(newNode->teamName, s->val.teamName);
+    newTeam->val.firstName = (char *)malloc(strlen(s->val.val.firstName) + 1);
+    strcpy(newTeam->val.firstName, s->val.val.firstName);
 
-    newNode->totalPoints = s->val.totalPoints;
+    newTeam->val.secondName = (char *)malloc(strlen(s->val.val.secondName) + 1);
+    strcpy(newTeam->val.secondName, s->val.val.secondName);
 
-    newNode->val.firstName = (char *)malloc(strlen(s->val.val.firstName) + 1);
-    if (newNode->val.firstName == NULL) {
-        free(newNode->teamName); // Free previously allocated memory
-        free(newNode); // Free previously allocated memory
-        printf("Memory allocation failed\n");
-        return;
-    }
-    strcpy(newNode->val.firstName, s->val.val.firstName);
+    newTeam->val.points = s->val.val.points;
 
-    newNode->val.secondName = (char *)malloc(strlen(s->val.val.secondName) + 1);
-    if (newNode->val.secondName == NULL) {
-        free(newNode->val.firstName); // Free previously allocated memory
-        free(newNode->teamName); // Free previously allocated memory
-        free(newNode); // Free previously allocated memory
-        printf("Memory allocation failed\n");
-        return;
-    }
-    strcpy(newNode->val.secondName, s->val.val.secondName);
-
-    newNode->val.points = s->val.val.points;
-
-    newNode->next = NULL;
-
-    if (q->rear == NULL)
-        q->rear = newNode;
-    else {
-        (q->rear)->next = newNode;
-        q->rear = newNode;
-    }
-
-    if (q->front == NULL)
-        q->front = q->rear;
+    newTeam->next = q->rear;
+    q->rear = newTeam;
 }
 
 Team *deQueue(Queue *q){
@@ -112,7 +75,7 @@ Team *deQueue(Queue *q){
 	strcpy(d->val.firstName, aux.front->val.firstName);
 	d->val.secondName = (char *)malloc(strlen(aux.front->val.secondName) + 1);
 	strcpy(d->val.secondName, aux.front->val.secondName);
-    
+
 	d->val.points = aux.front->val.points;
 
 	d->val = aux.front->val;

@@ -18,30 +18,12 @@ void createStack(Stack **top, Team *v) {
     newNode->val.totalPoints = v->totalPoints;
 
     newNode->val.teamName = (char *)malloc(strlen(v->teamName) + 1);
-    if (newNode->val.teamName == NULL) {
-        free(newNode); // Free previously allocated memory
-        printf("Memory allocation failed\n");
-        return;
-    }
     strcpy(newNode->val.teamName, v->teamName);
 
     newNode->val.val.firstName = (char *)malloc(strlen(v->val.firstName) + 1);
-    if (newNode->val.val.firstName == NULL) {
-        free(newNode->val.teamName); // Free previously allocated memory
-        free(newNode); // Free previously allocated memory
-        printf("Memory allocation failed\n");
-        return;
-    }
     strcpy(newNode->val.val.firstName, v->val.firstName);
 
     newNode->val.val.secondName = (char *)malloc(strlen(v->val.secondName) + 1);
-    if (newNode->val.val.secondName == NULL) {
-        free(newNode->val.val.firstName); // Free previously allocated memory
-        free(newNode->val.teamName); // Free previously allocated memory
-        free(newNode); // Free previously allocated memory
-        printf("Memory allocation failed\n");
-        return;
-    }
     strcpy(newNode->val.val.secondName, v->val.secondName);
 
     newNode->val.val.points = v->val.points;
@@ -72,16 +54,4 @@ void displayStack(Stack *top) {
         printf("Team Name: %s\n", top->val.teamName);
         top = top->next;
     }
-}
-
-char* returnWinnerTeamName(Stack **top) {
-    Stack *newNode = (Stack *)malloc(sizeof(Stack));
-
-    newNode->next = (*top);
-    (*top) = newNode;
-
-    char* winnerTeamName = (char*)malloc(sizeof(newNode->val.teamName));
-    strcpy(winnerTeamName, newNode->val.teamName);
-
-    return winnerTeamName;
 }

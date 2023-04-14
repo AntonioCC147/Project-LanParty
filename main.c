@@ -97,8 +97,6 @@ int main(int argc, char *argv[])
     }
     
     if(Tasks[2] == 1){
-        filePrint = fopen(argv[3], "at");
-
         Queue *teamListQueue = createQueue();
         int roundContor = 1;
 
@@ -107,19 +105,14 @@ int main(int argc, char *argv[])
 
         Stack *winnerTeam, *defeatedTeam;
         while(numOfTeams > 8){
-            fprintf(filePrint, "\n--- ROUND NO:%d\n", roundContor); fclose(filePrint); //-- READU
+            filePrint = fopen(argv[3], "at"); fprintf(filePrint, "\n--- ROUND NO:%d\n", roundContor); fclose(filePrint);
             
             for(int i = 0; i < numOfTeams; i+=2){
-                filePrint = fopen(argv[3], "at"); //- READU
+                filePrint = fopen(argv[3], "at");
                 Team *firstTeam = deQueue(teamListQueue);
                 Team *secondTeam = deQueue(teamListQueue);
 
-                //displayMatchesOnFile(argv[3], firstTeam->teamName, secondTeam->teamName); foloseste asta sau aia de mai jos
-
-                //idk what is this, but it's fix my problem with the unwanted space
                 fprintf(filePrint, "%-33s-%33s\n", firstTeam->teamName, secondTeam->teamName);
-
-                //fclose(filePrint);
 
                 if(firstTeam->totalPoints >= secondTeam->totalPoints){
                     (firstTeam->totalPoints) = firstTeam->totalPoints + 1.0;
@@ -131,10 +124,13 @@ int main(int argc, char *argv[])
                     createStack(&winnerTeam, secondTeam);
                     createStack(&defeatedTeam, firstTeam);
                 }
+
+                free(firstTeam); free(secondTeam);
+
                 fclose(filePrint);
             }
 
-            filePrint = fopen(argv[3], "at"); //-- READU
+            filePrint = fopen(argv[3], "at");
             fprintf(filePrint, "\nWINNERS OF ROUND NO:%d\n", roundContor); fclose(filePrint);
 
             numOfTeams = numOfTeams / 2; roundContor++;
@@ -143,20 +139,36 @@ int main(int argc, char *argv[])
             Stack *winners = winnerTeam;
             while(indexWinners < numOfTeams){
                 filePrint = fopen(argv[3], "at");
-
                 fprintf(filePrint, "%-34s-  %.2f\n", winners->val.teamName, winners->val.totalPoints);
+
                 winners=winners->next;
                 indexWinners++;
 
                 fclose(filePrint);
             }
 
-            //scrie aici afisarea, fa totul manual, fara functii
+            free(teamListQueue);
+            /*
+            Stack *ceva = winnerTeam;
 
-            //fclose(filePrint); poate trb stearsa asta
+            while(ceva){
+                enQueueWinnerTeam(teamListQueue, winnerTeam);
+                ceva = ceva->next;
+            }
+            free(ceva);
+            */
+            
+            /*
+            teamListQueue = createQueue();
+            //enQueueWinnerTeam(teamListQueue, winnerTeam);
 
-            enQueueWinnerTeam(teamListQueue, winnerTeam);
+            Stack *ceva = winnerTeam;
+            while(ceva){
+                enQueueWinnerTeam(teamListQueue, ceva);
+                ceva = ceva->next;
+            }
             deleteStack(&defeatedTeam); deleteStack(&winnerTeam);
+            */
         }
     }
 

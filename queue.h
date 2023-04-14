@@ -10,6 +10,8 @@ Queue *createQueue();
 void enQueue(Queue *q, Team *v);
 void enQueueWinnerTeam(Queue *q, Stack *s);
 
+void updateTeamListQueue(Queue *teamListQueue, Stack *winnerTeam);//
+
 Team *deQueue(Queue *q);
 
 int isEmptyQueue(Queue *q);
