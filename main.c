@@ -1,5 +1,6 @@
 #include "main.h"
 #include "queue.h"
+#include "BSTandAVL.h"
 
 int main(int argc, char *argv[])
 {
@@ -96,6 +97,9 @@ int main(int argc, char *argv[])
         fclose(filePrint);
     }
     
+    //BST aici ca altfel nu merge urm task
+    BST *BSTree = NULL;
+
     if(Tasks[2] == 1){
         Queue *teamListQueue = createQueue();
         int roundContor = 1;
@@ -144,6 +148,9 @@ int main(int argc, char *argv[])
                 filePrint = fopen(argv[3], "at");
                 fprintf(filePrint, "%-34s-  %.2f\n", winners->val.teamName, winners->val.totalPoints);
 
+                if(numOfTeams == 8) //schimba 8
+                    BSTree = insert(BSTree, winners);
+
                 winners=winners->next;
                 indexWinners++;
 
@@ -159,6 +166,15 @@ int main(int argc, char *argv[])
                 winnerTeam=winnerTeam->next;
             }
         }
+    }
+
+    if(Tasks[3] == 1){
+        filePrint = fopen(argv[3], "at");
+        fprintf(filePrint, "\nTOP 8 TEAMS:\n"); fclose(filePrint);
+
+        //ordonare
+
+        preorder(argv[3], BSTree);
     }
 
     //eliberare de memorie
