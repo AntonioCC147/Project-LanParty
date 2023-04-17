@@ -10,26 +10,33 @@ BST *newNode (Team data){
     return node;
 }
 
-BST *insert (BST *node, Stack *key){
-    // daca ( sub) arborele este gol , creaza nod
-    if(node == NULL) return newNode(key->val);
-    // altfel , coboara la stanga sau dreapta
-    if(key->val.totalPoints < node->data.totalPoints)
-    node->left = insert(node->left, key);
-    else if(key->val.totalPoints >= node->data.totalPoints)
-    node->right = insert(node->right, key);
+BST *insert(BST *node, Stack *key) {
+    // If the (sub)tree is empty, create a new node
+    if (node == NULL) return newNode(key->val);
+    
+    // Compare totalPoints
+    if (key->val.totalPoints < node->data.totalPoints) {
+        node->left = insert(node->left, key); // Insert into left subtree
+    } else if (key->val.totalPoints > node->data.totalPoints) {
+        node->right = insert(node->right, key); // Insert into right subtree
+    } else {
+        // If totalPoints are equal, compare teamName lexicographically
+        int cmp = strcmp(key->val.teamName, node->data.teamName);
+        if (cmp > 0) {
+            node->right = insert(node->right, key); // Insert into right subtree
+        } else {
+            node->left = insert(node->left, key); // Insert into left subtree
+        }
+    }
     
     return node;
 }
 
-void preorder(char *fileName, BST *root) {
+void preorder(FILE *fileName, BST *root) {
 	if (root){
-        FILE *file = fopen(fileName, "at");
-
+        //preorder(fileName, root->right);
         preorder(fileName, root->right);
-        fprintf(file, "%-34s-  %.2f\n", root->data.teamName, root->data.totalPoints);
+        fprintf(fileName, "%-34s-  %.2f\n", root->data.teamName, root->data.totalPoints);
         preorder(fileName, root->left);
-
-        fclose(file);
 	}
 }

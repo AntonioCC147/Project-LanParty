@@ -147,6 +147,7 @@ int main(int argc, char *argv[])
                 filePrint = fopen(argv[3], "at");
                 fprintf(filePrint, "%-34s-  %.2f\n", winners->val.teamName, winners->val.totalPoints);
 
+                
                 if(numOfTeams == 8) //schimba 8
                     BSTree = insert(BSTree, winners);
 
@@ -171,7 +172,10 @@ int main(int argc, char *argv[])
         filePrint = fopen(argv[3], "at");
         fprintf(filePrint, "\nTOP 8 TEAMS:\n"); fclose(filePrint);
 
-        preorder(argv[3], BSTree);
+        filePrint = fopen(argv[3], "at");
+        preorder(filePrint, BSTree);
+        
+        fclose(filePrint);
     }
 
     //eliberare de memorie

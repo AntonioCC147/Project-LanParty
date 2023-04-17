@@ -7,4 +7,4 @@ BST *newNode(Team data);
 
 BST *insert (BST *node, Stack *key);
 
-void preorder(char *fileName, BST *root);
+void preorder(FILE *fileName, BST *root);
