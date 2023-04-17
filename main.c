@@ -99,7 +99,6 @@ int main(int argc, char *argv[])
     
     //BST aici ca altfel nu merge urm task
     BST *BSTree = NULL;
-
     if(Tasks[2] == 1){
         Queue *teamListQueue = createQueue();
         int roundContor = 1;
@@ -171,8 +170,6 @@ int main(int argc, char *argv[])
     if(Tasks[3] == 1){
         filePrint = fopen(argv[3], "at");
         fprintf(filePrint, "\nTOP 8 TEAMS:\n"); fclose(filePrint);
-
-        //ordonare
 
         preorder(argv[3], BSTree);
     }
