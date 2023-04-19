@@ -38,6 +38,34 @@ void enQueue(Queue *q, Team *v){
 		q->front = q->rear;
 }
 
+void enQueueStack(Queue *q, Stack *v){
+	Team *newNode = (Team *)malloc(sizeof(Team));
+
+	newNode->teamName = (char *)malloc(strlen(v->val.teamName) + 1);
+    strcpy(newNode->teamName, v->val.teamName);
+
+    newNode->teamMates = v->val.teamMates;
+    newNode->totalPoints = v->val.totalPoints;
+
+	newNode->val.firstName = (char *)malloc(strlen(v->val.val.firstName) + 1);
+    strcpy(newNode->val.firstName, v->val.val.firstName);
+
+	newNode->val.secondName = (char *)malloc(strlen(v->val.val.secondName) + 1);
+    strcpy(newNode->val.secondName, v->val.val.secondName);
+
+	newNode->val.points = v->val.val.points;
+
+	newNode->next = NULL;
+	if(q->rear == NULL)
+		q->rear = newNode;
+	else{
+		(q->rear)->next = newNode;
+		(q->rear) = newNode;
+	}
+	if(q->front == NULL)
+		q->front = q->rear;
+}
+
 void enQueueWinnerTeam(Queue *q, Stack *s){
     Team *newTeam = (Team *)malloc(sizeof(Team));
 

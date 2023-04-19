@@ -8,6 +8,7 @@ typedef struct Queue{
 Queue *createQueue();
 
 void enQueue(Queue *q, Team *v);
+void enQueueStack(Queue *q, Stack *v);
 void enQueueWinnerTeam(Queue *q, Stack *s);
 
 void updateTeamListQueue(Queue *teamListQueue, Stack *winnerTeam);//
