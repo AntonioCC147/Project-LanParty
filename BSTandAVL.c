@@ -125,34 +125,26 @@ BST* insertAVL(BST* node, Stack *key) {
     // If this node becomes unbalanced, then there are 4 cases
 
     // Left Left Case
-    if (balance > 1) {
-        if (key->val.totalPoints < node->left->data.totalPoints) {
+    if (balance > 1)
+        if (key->val.totalPoints < node->left->data.totalPoints)
             return rightRotation(node);
-        //} else if (key->val.totalPoints > node->left->data.totalPoints) {
-            //node->left = leftRotation(node->left);
-            //return rightRotation(node);
-        } else if (key->val.totalPoints == node->left->data.totalPoints) {
+        else if (key->val.totalPoints == node->left->data.totalPoints) {
             // If totalPoints are equal, compare teamName lexicographically
             int cmp = strcmp(key->val.teamName, node->left->data.teamName);
             if (cmp < 0) 
                 return rightRotation(node);
         }
-    }
 
     // Right Right Case
-    if (balance < -1) {
-        if (key->val.totalPoints > node->right->data.totalPoints) {
+    if (balance < -1)
+        if (key->val.totalPoints > node->right->data.totalPoints)
             return leftRotation(node);
-        //} else if (key->val.totalPoints < node->right->data.totalPoints) {
-            //node->right = rightRotation(node->right);
-            //return leftRotation(node);
-        } else if (key->val.totalPoints == node->right->data.totalPoints) {
+        else if (key->val.totalPoints == node->right->data.totalPoints) {
             // If totalPoints are equal, compare teamName lexicographically
             int cmp = strcmp(key->val.teamName, node->left->data.teamName);
             if (cmp > 0) 
                 return leftRotation(node);
         }
-    }
 
     if(balance > 1 && key->val.totalPoints > node->left->data.totalPoints)
         return LRRotation(node);
