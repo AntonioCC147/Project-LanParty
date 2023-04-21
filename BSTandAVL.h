@@ -19,6 +19,9 @@ BST *leftRotation(BST *x);
 BST *rightRotation(BST *y);
 int getBalance(BST *node);
 
+BST *LRRotation(BST *Z);
+BST *RLRotation(BST *Z);
+
 BST *insertAVL(BST* node, Stack *key);
 
 void preorderAVL(FILE *fileName, BST *root);

@@ -87,6 +87,16 @@ int getBalance(BST *node){
     return height(node->left) - height(node->right);
 }
 
+BST *LRRotation(BST *Z){
+    Z->left = leftRotation(Z->left);
+    return rightRotation(Z);
+}
+
+BST *RLRotation(BST *Z){
+    Z->right = rightRotation(Z->right);
+    return leftRotation(Z);
+}
+
 BST* insertAVL(BST* node, Stack *key) {
     /* 1.  Perform the normal BST insertion */
     if (node == NULL) return newNode(key->val);
@@ -101,7 +111,7 @@ BST* insertAVL(BST* node, Stack *key) {
         int cmp = strcmp(key->val.teamName, node->data.teamName);
         if (cmp > 0) {
             node->right = insertAVL(node->right, key); // Insert into right subtree
-        } else {
+        } else if(cmp < 0) {
             node->left = insertAVL(node->left, key); // Insert into left subtree
         }
     }
@@ -118,19 +128,14 @@ BST* insertAVL(BST* node, Stack *key) {
     if (balance > 1) {
         if (key->val.totalPoints < node->left->data.totalPoints) {
             return rightRotation(node);
-        } else if (key->val.totalPoints > node->left->data.totalPoints) {
-            node->left = leftRotation(node->left);
-            return rightRotation(node);
-        } else {
+        //} else if (key->val.totalPoints > node->left->data.totalPoints) {
+            //node->left = leftRotation(node->left);
+            //return rightRotation(node);
+        } else if (key->val.totalPoints == node->left->data.totalPoints) {
             // If totalPoints are equal, compare teamName lexicographically
             int cmp = strcmp(key->val.teamName, node->left->data.teamName);
-            if (cmp < 0) {
-                node->right = rightRotation(node->right);
+            if (cmp < 0) 
                 return rightRotation(node);
-            } else {
-                node->left = leftRotation(node->left);
-                return leftRotation(node);
-            }
         }
     }
 
@@ -138,21 +143,21 @@ BST* insertAVL(BST* node, Stack *key) {
     if (balance < -1) {
         if (key->val.totalPoints > node->right->data.totalPoints) {
             return leftRotation(node);
-        } else if (key->val.totalPoints < node->right->data.totalPoints) {
-            node->right = rightRotation(node->right);
-            return leftRotation(node);
-        } else {
+        //} else if (key->val.totalPoints < node->right->data.totalPoints) {
+            //node->right = rightRotation(node->right);
+            //return leftRotation(node);
+        } else if (key->val.totalPoints == node->right->data.totalPoints) {
             // If totalPoints are equal, compare teamName lexicographically
-            int cmp = strcmp(key->val.teamName, node->right->data.teamName);
-            if (cmp > 0) {
-                node->right = rightRotation(node->right);
-                return rightRotation(node);
-            } else {
-                node->left = leftRotation(node->left);
+            int cmp = strcmp(key->val.teamName, node->left->data.teamName);
+            if (cmp > 0) 
                 return leftRotation(node);
-            }
         }
     }
+
+    if(balance > 1 && key->val.totalPoints > node->left->data.totalPoints)
+        return LRRotation(node);
+    if(balance < -1 && key->val.totalPoints < node->right->data.totalPoints)
+        return RLRotation(node);
 
     /* return the (unchanged) node pointer */
     return node;
