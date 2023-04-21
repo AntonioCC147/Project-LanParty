@@ -13,11 +13,12 @@ void preorder(FILE *fileName, BST *root);
 //
 
 int max(int num1, int num2);
-int height (BST *root);
-BST *rightRotation(BST *z);
-BST *leftRotation(BST *z);
-BST *LRRotation(BST *Z);
-BST *RLRotation(BST *Z);
-BST* search(BST* root, BST key);
-BST *insertAVL(BST *node, Stack *key);
+int height(BST *node);
+
+BST *leftRotation(BST *x);
+BST *rightRotation(BST *y);
+int getBalance(BST *node);
+
+BST *insertAVL(BST* node, Stack *key);
+
 void preorderAVL(FILE *fileName, BST *root);

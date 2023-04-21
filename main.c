@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
     }
 
     // BST aici ca altfel nu merge urm task
-    BST *BSTree = NULL;
+    BST *BSTree = NULL, *AVLTree = NULL;
     if (Tasks[2] == 1)
     {
         Queue *teamListQueue = createQueue();
@@ -172,6 +172,7 @@ int main(int argc, char *argv[])
 
                 if (numOfTeams == 8){ // schimba 8 - for task 4
                     BSTree = insertBST(BSTree, winners);
+                    AVLTree = insertAVL(AVLTree, winners);
                 }
 
                 winners = winners->next;
@@ -205,22 +206,17 @@ int main(int argc, char *argv[])
     }
 
     if (Tasks[4] == 1){
-        BST *AVLTree = BSTree;
-
         filePrint = fopen(argv[3], "at");
         fprintf(filePrint, "\nTHE LEVEL 2 TEAMS ARE: \n");
 
-        //preorderAVL(filePrint, AVLTree);
+        preorderAVL(filePrint, AVLTree);
         fclose(filePrint);
-        //  nu calc bine height din insertAVL
     }
 
     // eliberare de memorie
-    /*
     for(int i = 0; i < numOfTeams; i++)
         free(teamList[i]);
     free(teamList);
-    */
 
     return 0;
 }
