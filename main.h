@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define INT_MIN -2147483648
-
 typedef struct Player{
     char *firstName;
     char *secondName;

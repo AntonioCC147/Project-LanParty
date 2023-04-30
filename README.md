@@ -6,3 +6,26 @@ Pentru a verifica functionarea checker-ului va trebui sa descarcati tot depozitu
 ```shell
 ./checker.sh
 ````
+Folder Structure
+
+frontend
+ ├── public/
+ ├── src/
+ │ ├── assets/
+ │ ├── components/
+ │ │ ├── admin
+ │ │ ├── admin-market
+ │ │ ├── auth/
+ │ │ ├── helpers
+ │ │ │ ├── api
+ │ │ │ ├── buttons
+ │ │ │ ├── forms
+ │ │ │ ├── modals
+ │ │ │ ├── section-header
+ │ │ │ ├── Constants.js
+ │ │ │ └── Errors.js
+ │ ├── modules/
+ │ ├── App.css
+ │ ├── App.js
+ │ ├── index.css
+ │ └── index.js
