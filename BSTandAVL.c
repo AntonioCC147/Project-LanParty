@@ -30,7 +30,7 @@ BST *insertBST(BST *node, Stack *key) {
         }
     }
 
-    node->height = 1 + max(height(node->left), height(node->right));
+    node->height = 1 + max2(height(node->left), height(node->right));
     
     return node;
 }
@@ -45,7 +45,7 @@ void preorder(FILE *fileName, BST *root) {
 
 //ARBORI
 
-int max(int num1, int num2){
+int max2(int num1, int num2){
     return (num1 > num2 ) ? num1 : num2;
 }
 
@@ -62,8 +62,8 @@ BST *leftRotation(BST *x){
     y->left = x;
     x->right = T2;
  
-    x->height = max(height(x->left), height(x->right)) + 1;
-    y->height = max(height(y->left), height(y->right)) + 1;
+    x->height = 1 + max2(height(x->left), height(x->right));
+    y->height = 1 + max2(height(y->left), height(y->right));
  
     return y;
 }
@@ -75,8 +75,8 @@ BST *rightRotation(BST *y) {
     x->right = y;
     y->left = T2;
  
-    y->height = max(height(y->left), height(y->right)) + 1;
-    x->height = max(height(x->left), height(x->right)) + 1;
+    y->height = 1 + max2(height(y->left), height(y->right));
+    x->height = 1 + max2(height(x->left), height(x->right));
  
     return x;
 }
@@ -97,18 +97,18 @@ BST *RLRotation(BST *Z){
     return leftRotation(Z);
 }
 
-BST* insertAVL(BST* node, Stack *key) {
+BST* insertAVL(BST* node, Team *key) {
     /* 1.  Perform the normal BST insertion */
-    if (node == NULL) return newNode(key->val);
+    if (node == NULL) return newNode(*key);
     
     // Compare totalPoints
-    if (key->val.totalPoints < node->data.totalPoints) {
+    if (key->totalPoints < node->data.totalPoints) {
         node->left = insertAVL(node->left, key); // Insert into left subtree
-    } else if (key->val.totalPoints > node->data.totalPoints) {
+    } else if (key->totalPoints > node->data.totalPoints) {
         node->right = insertAVL(node->right, key); // Insert into right subtree
     } else {
         // If totalPoints are equal, compare teamName lexicographically
-        int cmp = strcmp(key->val.teamName, node->data.teamName);
+        int cmp = strcmp(key->teamName, node->data.teamName);
         if (cmp > 0) {
             node->right = insertAVL(node->right, key); // Insert into right subtree
         } else if(cmp < 0) {
@@ -117,7 +117,7 @@ BST* insertAVL(BST* node, Stack *key) {
     }
 
     /* 2. Update height of this ancestor node */
-    node->height = 1 + max(height(node->left), height(node->right));
+    node->height = 1 + max2(height(node->left), height(node->right));
 
     /* 3. Get the balance factor of this ancestor node to check whether this node became unbalanced */
     int balance = getBalance(node);
@@ -126,42 +126,50 @@ BST* insertAVL(BST* node, Stack *key) {
 
     // Left Left Case
     if (balance > 1)
-        if (key->val.totalPoints < node->left->data.totalPoints)
+        if (key->totalPoints < node->left->data.totalPoints)
             return rightRotation(node);
-        else if (key->val.totalPoints == node->left->data.totalPoints) {
+        else if (key->totalPoints == node->left->data.totalPoints) {
             // If totalPoints are equal, compare teamName lexicographically
-            int cmp = strcmp(key->val.teamName, node->left->data.teamName);
+            int cmp = strcmp(key->teamName, node->left->data.teamName);
             if (cmp < 0) 
                 return rightRotation(node);
         }
 
     // Right Right Case
     if (balance < -1)
-        if (key->val.totalPoints > node->right->data.totalPoints)
+        if (key->totalPoints > node->right->data.totalPoints)
             return leftRotation(node);
-        else if (key->val.totalPoints == node->right->data.totalPoints) {
+        else if (key->totalPoints == node->right->data.totalPoints) {
             // If totalPoints are equal, compare teamName lexicographically
-            int cmp = strcmp(key->val.teamName, node->left->data.teamName);
+            int cmp = strcmp(key->teamName, node->right->data.teamName);
             if (cmp > 0) 
                 return leftRotation(node);
         }
 
-    if(balance > 1 && key->val.totalPoints > node->left->data.totalPoints)
+    if(balance > 1 && key->totalPoints > node->left->data.totalPoints)
         return LRRotation(node);
-    if(balance < -1 && key->val.totalPoints < node->right->data.totalPoints)
+    if(balance < -1 && key->totalPoints < node->right->data.totalPoints)
         return RLRotation(node);
 
     /* return the (unchanged) node pointer */
     return node;
 }
 
+void transformAVL(BST **AVL, BST *root) {
+    if (root) {
+        transformAVL(AVL, root->right);
+        *AVL = insertAVL(*AVL, &(root->data));
+        transformAVL(AVL, root->left);
+    }
+}
+
 void preorderAVL(FILE *fileName, BST *root) {
-	if (root != NULL){
+    if (root != NULL){
         preorderAVL(fileName, root->right);
        
-        if(root->height == 1)
+        if(root->height == 2)
             fprintf(fileName, "%s\n", root->data.teamName);
         
         preorderAVL(fileName, root->left);
-	}
+    }
 }

@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
     }
 
     // BST aici ca altfel nu merge urm task
-    BST *BSTree = NULL, *AVLTree = NULL;
+    BST *BSTree = NULL;
     if (Tasks[2] == 1)
     {
         Queue *teamListQueue = createQueue();
@@ -170,10 +170,8 @@ int main(int argc, char *argv[])
                 filePrint = fopen(argv[3], "at");
                 fprintf(filePrint, "%-34s-  %.2f\n", winners->val.teamName, winners->val.totalPoints);
 
-                if (numOfTeams == 8){ // schimba 8 - for task 4
+                if (numOfTeams == 8) // schimba 8 - for task 4
                     BSTree = insertBST(BSTree, winners);
-                    AVLTree = insertAVL(AVLTree, winners);
-                }
 
                 winners = winners->next;
                 indexWinners++;
@@ -193,6 +191,7 @@ int main(int argc, char *argv[])
         }
     }
 
+    BST *AVL = NULL;
     if (Tasks[3] == 1)
     {
         filePrint = fopen(argv[3], "at");
@@ -202,14 +201,20 @@ int main(int argc, char *argv[])
         filePrint = fopen(argv[3], "at");
         preorder(filePrint, BSTree);
 
+        //pur si simplu trb sa scot de aici din BSTree in preorder ca asa mi le da in ordine descrescatoare si gata, le bag in AVL
+        
+        transformAVL(&AVL, BSTree);
+
         fclose(filePrint);
     }
 
     if (Tasks[4] == 1){
         filePrint = fopen(argv[3], "at");
+
         fprintf(filePrint, "\nTHE LEVEL 2 TEAMS ARE: \n");
 
-        preorderAVL(filePrint, AVLTree);
+        preorderAVL(filePrint, AVL);
+
         fclose(filePrint);
     }
 
