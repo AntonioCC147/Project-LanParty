@@ -1,17 +1,10 @@
 #include "main.h"
 #include "stack.h"
 
-void createStack(Stack **top, Team *v) {
-    if (v == NULL || v->teamName == NULL || v->val.firstName == NULL || v->val.secondName == NULL) {
-        // Handle NULL pointers, e.g., return an error or exit gracefully
-        printf("Invalid input\n");
-        return;
-    }
-
+void createStack(Stack **top, Team *v){
     Stack *newNode = (Stack *)malloc(sizeof(Stack));
-    if (newNode == NULL) {
-        printf("Memory allocation failed\n");
-        return;
+    if(newNode == NULL){
+        printf("Memory allocation failed\n"); exit(1);
     }
 
     newNode->val.teamMates = v->teamMates;
@@ -39,8 +32,7 @@ int isEmptyStack(Team *top){
 void deleteStack(Stack **top){
 	Stack *topcopy;
 
-    while (*top != NULL)
-    {
+    while(*top != NULL){
         topcopy = (*top)->next;
         free(*top);
         *top = topcopy;
@@ -50,7 +42,7 @@ void deleteStack(Stack **top){
 
 void displayStack(Stack *top) {
     printf("Printing stack:\n");
-    while (top != NULL) {
+    while(top != NULL){
         printf("Team Name: %s\n", top->val.teamName);
         top = top->next;
     }

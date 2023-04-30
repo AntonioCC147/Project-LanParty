@@ -1,54 +1,47 @@
 #include "main.h"
 #include "list.h"
 
-void addAtBeginning(Team **head, char *teamName, int teamMates, int totalPoints, Player v)
-{
+void addAtBeginning(Team **head, char *teamName, int teamMates, int totalPoints, Player v){
     Team *newTeam = (Team *)malloc(sizeof(Team));
 
     newTeam->teamMates = teamMates;
-
     newTeam->totalPoints = totalPoints;
+    newTeam->val.points = v.points;
 
-    newTeam->teamName = (char *)malloc(strlen(teamName) +1); // allocate memory for the team name
+    newTeam->teamName = (char *)malloc(strlen(teamName) +1);
     strcpy(newTeam->teamName, teamName);
 
-    newTeam->val.firstName = (char *)malloc(strlen(v.firstName) + 1); // allocate memory for the first name
+    newTeam->val.firstName = (char *)malloc(strlen(v.firstName) + 1);
     strcpy(newTeam->val.firstName, v.firstName);
 
-    newTeam->val.secondName = (char *)malloc(strlen(v.secondName) + 1); // allocate memory for the second name
+    newTeam->val.secondName = (char *)malloc(strlen(v.secondName) + 1);
     strcpy(newTeam->val.secondName, v.secondName);
-
-    newTeam->val.points = v.points;
 
     newTeam->next = *head;
     *head = newTeam;
 }
 
-void addAtEnd(Team **head, char *teamName, int teamMates, int totalPoints, Player v)
-{
+void addAtEnd(Team **head, char *teamName, int teamMates, int totalPoints, Player v){
     Team *aux = *head;
     Team *newTeam = (Team *)malloc(sizeof(Team));
 
     newTeam->teamMates = teamMates;
-
     newTeam->totalPoints = totalPoints;
+    newTeam->val.points = v.points;
 
-    newTeam->teamName = (char *)malloc(strlen(teamName) + 1); // allocate memory for the team name
+    newTeam->teamName = (char *)malloc(strlen(teamName) + 1);
     strcpy(newTeam->teamName, teamName);
 
-    newTeam->val.firstName = (char *)malloc(strlen(v.firstName) + 1); // allocate memory for the first name
+    newTeam->val.firstName = (char *)malloc(strlen(v.firstName) + 1);
     strcpy(newTeam->val.firstName, v.firstName);
 
-    newTeam->val.secondName = (char *)malloc(strlen(v.secondName) + 1); // allocate memory for the second name
+    newTeam->val.secondName = (char *)malloc(strlen(v.secondName) + 1);
     strcpy(newTeam->val.secondName, v.secondName);
-
-    newTeam->val.points = v.points;
 
     newTeam->next = NULL;
 
-    if(*head == NULL){
+    if(*head == NULL)
         addAtBeginning(head, teamName, teamMates, totalPoints, v);
-    }
     else{
         while(aux->next != NULL){
             aux = aux->next;
@@ -77,35 +70,26 @@ void eliminationTeams(Team **teamList, int *numOfTeams, int totalTeamsAfterElimi
     }
 }
 
-void deleteTeam(Team **teamList, int *numOfTeams, int index) {
-    // Check if index is valid
-    if (index < 0 || index >= *numOfTeams) {
-        printf("Invalid index\n");
-        return;
-    }
+void deleteTeam(Team **teamList, int *numOfTeams, int index){
     Team *teamToDelete = teamList[index];
-    // Update the previous team's next pointer
-    if (index > 0) {
+    if(index > 0)
         teamList[index-1]->next = teamToDelete->next;
-    }
-    // Update the vector of teams
-    for (int i = index; i < *numOfTeams-1; i++) {
+
+    for(int i = index; i < *numOfTeams-1; i++)
         teamList[i] = teamList[i+1];
-    }
-    // Free memory
+
     free(teamToDelete->teamName);
     free(teamToDelete);
-    // Update the number of teams
+
     (*numOfTeams)--;
 }
 
-int findTeamIndex(Team **teamList, int numOfTeams, Team *teamToFind) {
-    for (int i = 0; i < numOfTeams; i++) {
-        if (teamList[i] == teamToFind) {
+int findTeamIndex(Team **teamList, int numOfTeams, Team *teamToFind){
+    for(int i = 0; i < numOfTeams; i++)
+        if(teamList[i] == teamToFind) 
             return i;
-        }
-    }
-    return -1; // Team not found
+
+    return -1;
 }
 
 Team* lowestPoints(Team **teamList, int numOfTeams){
@@ -117,33 +101,26 @@ Team* lowestPoints(Team **teamList, int numOfTeams){
             index = i;
         }
 
-    //printf("%s %f ", teamList[index]->teamName, teamList[index]->totalPoints);
     return teamList[index];
 }
 
-void deleteElement(Team **head, char *teamNameDelete)
-{
+void deleteElement(Team **head, char *teamNameDelete){
     if(*head == NULL)
         return;
 
     Team *headcopy = *head;
-    if(strcmp(headcopy->teamName, teamNameDelete) == 0)
-    {
+    if(strcmp(headcopy->teamName, teamNameDelete) == 0){
         *head = (*head)->next;
         free(headcopy);
         return;
     }
 
     Team *prev = *head;
-    while(headcopy != NULL)
-    {
-        if (strcmp(headcopy->teamName, teamNameDelete) == 0)
-        {
+    while(headcopy != NULL){
+        if(strcmp(headcopy->teamName, teamNameDelete) == 0){
             prev = headcopy;
             headcopy = headcopy->next;
-        }
-        else
-        {
+        } else{
             prev->next = headcopy->next;
             free(headcopy);
             return;
@@ -151,12 +128,10 @@ void deleteElement(Team **head, char *teamNameDelete)
     }
 }
 
-void deleteList(Team **head)
-{
+void deleteList(Team **head){
     Team *headcopy;
 
-    while (*head != NULL)
-    {
+    while(*head != NULL){
         headcopy = (*head)->next;
         free(*head);
         *head = headcopy;
@@ -164,8 +139,7 @@ void deleteList(Team **head)
     *head = NULL;
 }
 
-void displayFileTeamName(char *fileName, Team *head)
-{
+void displayFileTeamName(char *fileName, Team *head){
     FILE *file = fopen(fileName, "ab");
 
     fprintf(file, "%s", head->teamName);
@@ -174,14 +148,11 @@ void displayFileTeamName(char *fileName, Team *head)
 }
 
 void resetFile(char *fileName){
-    // Delete the file
     remove(fileName);
 
-    // Reopen the file
     FILE *file = fopen(fileName, "ab");
 
-    if (file == NULL) {
-        printf("Error opening file!\n");
-        exit(1);
+    if(file == NULL){
+        printf("Error opening file!\n"); exit(1);
     }
 }

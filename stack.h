@@ -6,11 +6,7 @@ typedef struct Stack{
 }Stack;
 
 void createStack(Stack **top, Team *v);
-
-int isEmptyStack(Team *top);
-
 void deleteStack(Stack **top);
 
+int isEmptyStack(Team *top);
 void displayStack(Stack *top);
-void displayMatchesOnFile(char *fileName, char *firstTeamName, char *secondTeamName);
-char* returnWinnerTeamName(Stack **top);

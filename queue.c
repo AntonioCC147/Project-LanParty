@@ -18,14 +18,13 @@ void enQueue(Queue *q, Team *v){
 
     newNode->teamMates = v->teamMates;
     newNode->totalPoints = v->totalPoints;
+	newNode->val.points = v->val.points;
 
 	newNode->val.firstName = (char *)malloc(strlen(v->val.firstName) + 1);
     strcpy(newNode->val.firstName, v->val.firstName);
 
 	newNode->val.secondName = (char *)malloc(strlen(v->val.secondName) + 1);
     strcpy(newNode->val.secondName, v->val.secondName);
-
-	newNode->val.points = v->val.points;
 
 	newNode->next = NULL;
 	if(q->rear == NULL)
@@ -46,14 +45,13 @@ void enQueueStack(Queue *q, Stack *v){
 
     newNode->teamMates = v->val.teamMates;
     newNode->totalPoints = v->val.totalPoints;
+	newNode->val.points = v->val.val.points;
 
 	newNode->val.firstName = (char *)malloc(strlen(v->val.val.firstName) + 1);
     strcpy(newNode->val.firstName, v->val.val.firstName);
 
 	newNode->val.secondName = (char *)malloc(strlen(v->val.val.secondName) + 1);
     strcpy(newNode->val.secondName, v->val.val.secondName);
-
-	newNode->val.points = v->val.val.points;
 
 	newNode->next = NULL;
 	if(q->rear == NULL)
@@ -74,14 +72,13 @@ void enQueueWinnerTeam(Queue *q, Stack *s){
 
     newTeam->teamMates = s->val.teamMates;
     newTeam->totalPoints = s->val.totalPoints;
+	newTeam->val.points = s->val.val.points;
 
     newTeam->val.firstName = (char *)malloc(strlen(s->val.val.firstName) + 1);
     strcpy(newTeam->val.firstName, s->val.val.firstName);
 
     newTeam->val.secondName = (char *)malloc(strlen(s->val.val.secondName) + 1);
     strcpy(newTeam->val.secondName, s->val.val.secondName);
-
-    newTeam->val.points = s->val.val.points;
 
     newTeam->next = q->rear;
     q->rear = newTeam;
@@ -98,13 +95,12 @@ Team *deQueue(Queue *q){
 
 	d->teamMates = aux.front->teamMates;
 	d->totalPoints = aux.front->totalPoints;
+	d->val.points = aux.front->val.points;
 
 	d->val.firstName = (char *)malloc(strlen(aux.front->val.firstName) + 1);
 	strcpy(d->val.firstName, aux.front->val.firstName);
 	d->val.secondName = (char *)malloc(strlen(aux.front->val.secondName) + 1);
 	strcpy(d->val.secondName, aux.front->val.secondName);
-
-	d->val.points = aux.front->val.points;
 
 	d->val = aux.front->val;
 	q->front = (q->front)->next;
@@ -119,28 +115,23 @@ int isEmptyQueue(Queue *q){
 }
 
 void deleteQueue(Queue *q) {
-    if (q == NULL) {
-        return; // Nothing to delete
-    }
+    if (q == NULL)
+        return;
 
     Team *current = q->front;
     Team *next;
 
-    while (current != NULL) {
+    while(current != NULL){
         next = current->next;
 
-        // Free dynamically allocated strings in the Team struct
         free(current->teamName);
         free(current->val.firstName);
         free(current->val.secondName);
 
-        // Free the Team struct itself
         free(current);
 
         current = next;
     }
 
-    // Set front and rear pointers to NULL to indicate an empty queue
-    q->front = NULL;
-    q->rear = NULL;
+    q->front = NULL; q->rear = NULL;
 }
