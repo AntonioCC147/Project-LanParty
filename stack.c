@@ -1,5 +1,5 @@
 #include "main.h"
-#include "stack.h"
+#include "./libraries/stack.h"
 
 void createStack(Stack **top, Team *v){
     Stack *newNode = (Stack *)malloc(sizeof(Stack));

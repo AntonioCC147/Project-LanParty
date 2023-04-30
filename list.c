@@ -1,5 +1,5 @@
 #include "main.h"
-#include "list.h"
+#include "./libraries/list.h"
 
 void addAtBeginning(Team **head, char *teamName, int teamMates, int totalPoints, Player v){
     Team *newTeam = (Team *)malloc(sizeof(Team));
