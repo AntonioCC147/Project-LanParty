@@ -1,6 +1,10 @@
 #include "main.h"
 #include "./libraries/stack.h"
 
+int isEmptyStack(Team *top){
+	return top == NULL;
+}
+
 void createStack(Stack **top, Team *v){
     Stack *newNode = (Stack *)malloc(sizeof(Stack));
     if(newNode == NULL){
@@ -25,10 +29,6 @@ void createStack(Stack **top, Team *v){
     (*top) = newNode;
 }
 
-int isEmptyStack(Team *top){
-	return top == NULL;
-}
-
 void deleteStack(Stack **top){
 	Stack *topcopy;
 
@@ -38,12 +38,4 @@ void deleteStack(Stack **top){
         *top = topcopy;
     }
     *top = NULL;
-}
-
-void displayStack(Stack *top) {
-    printf("Printing stack:\n");
-    while(top != NULL){
-        printf("Team Name: %s\n", top->val.teamName);
-        top = top->next;
-    }
 }

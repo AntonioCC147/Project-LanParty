@@ -12,5 +12,3 @@ void deleteElement(struct Team **head, char *teamNameDelete);
 void deleteList(Team **head);
 
 void displayFileTeamName(char *fileRead, Team *head);
-
-void resetFile(char *fileName);

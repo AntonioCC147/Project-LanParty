@@ -70,6 +70,7 @@ int main(int argc, char *argv[])
         fclose(filePrint);
     }
 
+
     if(Tasks[1] == 1){
         filePrint = fopen(argv[3], "wt");
 
@@ -166,17 +167,15 @@ int main(int argc, char *argv[])
 
         filePrint = fopen(argv[3], "at");
         preorder(filePrint, BSTree);
-        
-        transformAVL(&AVLTree, BSTree);
-
         fclose(filePrint);
+
+        transformAVL(&AVLTree, BSTree);
     }
 
     if(Tasks[4] == 1){
         filePrint = fopen(argv[3], "at");
 
         fprintf(filePrint, "\nTHE LEVEL 2 TEAMS ARE: \n");
-
         preorderAVL(filePrint, AVLTree);
 
         fclose(filePrint);

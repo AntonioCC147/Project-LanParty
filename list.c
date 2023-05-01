@@ -146,13 +146,3 @@ void displayFileTeamName(char *fileName, Team *head){
 
     fclose(file);
 }
-
-void resetFile(char *fileName){
-    remove(fileName);
-
-    FILE *file = fopen(fileName, "ab");
-
-    if(file == NULL){
-        printf("Error opening file!\n"); exit(1);
-    }
-}

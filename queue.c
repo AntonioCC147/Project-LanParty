@@ -30,8 +30,7 @@ void enQueue(Queue *q, Team *v){
 	if(q->rear == NULL)
 		q->rear = newNode;
 	else{
-		(q->rear)->next = newNode;
-		(q->rear) = newNode;
+		(q->rear)->next = newNode; (q->rear) = newNode;
 	}
 	if(q->front == NULL)
 		q->front = q->rear;
@@ -57,8 +56,7 @@ void enQueueStack(Queue *q, Stack *v){
 	if(q->rear == NULL)
 		q->rear = newNode;
 	else{
-		(q->rear)->next = newNode;
-		(q->rear) = newNode;
+		(q->rear)->next = newNode; (q->rear) = newNode;
 	}
 	if(q->front == NULL)
 		q->front = q->rear;
@@ -125,8 +123,7 @@ void deleteQueue(Queue *q) {
         next = current->next;
 
         free(current->teamName);
-        free(current->val.firstName);
-        free(current->val.secondName);
+		free(current->val.firstName); free(current->val.secondName);
 
         free(current);
 

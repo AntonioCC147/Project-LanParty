@@ -3,7 +3,7 @@
 #include "./libraries/stack.h"
 #include "./libraries/BSTandAVL.h"
 
-BST *newNode (Team data){ 
+BST *newNode(Team data){ 
     BST *node = (BST*)malloc(sizeof(BST));
     node->data = data;
     node->height = 1;
@@ -11,8 +11,8 @@ BST *newNode (Team data){
     return node;
 }
 
-BST *insertBST(BST *node, Stack *key) {
-    if (node == NULL) return newNode(key->val);
+BST *insertBST(BST *node, Stack *key){
+    if(node == NULL) return newNode(key->val);
     
     if(key->val.totalPoints < node->data.totalPoints)
         node->left = insertBST(node->left, key);
@@ -30,7 +30,7 @@ BST *insertBST(BST *node, Stack *key) {
     return node;
 }
 
-void preorder(FILE *fileName, BST *root) {
+void preorder(FILE *fileName, BST *root){
 	if(root){
         preorder(fileName, root->right);
         fprintf(fileName, "%-34s-  %.2f\n", root->data.teamName, root->data.totalPoints);
@@ -61,7 +61,7 @@ BST *leftRotation(BST *x){
     return y;
 }
 
-BST *rightRotation(BST *y) {
+BST *rightRotation(BST *y){
     BST *x = y->left;
     BST *T2 = x->right;
  
@@ -138,7 +138,7 @@ BST* insertAVL(BST* node, Team *key) {
     return node;
 }
 
-void preorderAVL(FILE *fileName, BST *root) {
+void preorderAVL(FILE *fileName, BST *root){
     if(root != NULL){
         preorderAVL(fileName, root->right);
         if(root->height == 2)

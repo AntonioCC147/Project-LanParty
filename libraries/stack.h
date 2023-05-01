@@ -5,8 +5,6 @@ typedef struct Stack{
     struct Stack *next;
 }Stack;
 
+int isEmptyStack(Team *top);
 void createStack(Stack **top, Team *v);
 void deleteStack(Stack **top);
-
-int isEmptyStack(Team *top);
-void displayStack(Stack *top);
