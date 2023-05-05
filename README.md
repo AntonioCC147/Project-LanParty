@@ -10,6 +10,18 @@ Pentru a verifica functionarea checker-ului va trebui sa descarcati tot depozitu
 ```
 lan-party-02-checker
  ├── date/
+ │ ├── t1/
+ │ │ ├── c.in
+ │ │ ├── d.in
+ │ ├── t2/
+ │ │ ├── c.in
+ │ │ ├── d.in
+ │ ├── ...
+ │ │ ├── ...
+ │ │ ├── ...
+ │ ├── t15/
+ │ │ ├── c.in
+ │ │ ├── d.in
  ├── libraries/
  │ ├── BSTandAVL.h
  │ ├── list.h
