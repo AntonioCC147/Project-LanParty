@@ -7,56 +7,23 @@ Pentru a verifica functionarea checker-ului va trebui sa descarcati tot depozitu
 ./checker.sh
 ```
 ## Folder Structure
-
-frontend
- ├── public/
- ├── src/
- │ ├── assets/
- │ ├── components/
- │ │ ├── admin
- │ │ ├── admin-market
- │ │ ├── auth/
- │ │ ├── helpers
- │ │ │ ├── api
- │ │ │ ├── buttons
- │ │ │ ├── forms
- │ │ │ ├── modals
- │ │ │ ├── section-header
- │ │ │ ├── Constants.js
- │ │ │ └── Errors.js
- │ ├── modules/
- │ ├── App.css
- │ ├── App.js
- │ ├── index.css
- │ └── index.js
-
- ## Folder Structure
 ```
-frontend
- ├── public/
- ├── src/
- │ ├── assets/
- │ ├── components/
- │ │ ├── admin
- │ │ ├── admin-market
- │ │ ├── auth/
- │ │ ├── helpers
- │ │ │ ├── api
- │ │ │ ├── buttons
- │ │ │ ├── forms
- │ │ │ ├── modals
- │ │ │ ├── section-header
- │ │ │ ├── Constants.js
- │ │ │ └── Errors.js
- | | ├── market
- | | ├── landing
- | | ├── navbar
- | | ├── profile
- | | ├── section
- | | └── etc.
- │ ├── modules/
- │ ├── App.css
- │ ├── App.js
- │ ├── index.css
- │ └── index.js
+lan-party-02-checker
+ ├── date/
+ ├── libraries/
+ │ ├── BSTandAVL.h
+ │ ├── list.h
+ │ ├── queue.h
+ │ ├── stack.h
+ ├── out/
+ │ ├── out1.out
+ │ ├── out2.out
+ │ ├── ...
+ │ ├── out15.out
+ ├── rezultate/
+ │ ├── r1.out
+ │ ├── r2.out
+ │ ├── ...
+ │ ├── r15.out
+ ├── ssafdsgsggsg/
 ```
