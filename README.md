@@ -5,8 +5,8 @@ Checker-ul este o aplicație de testare automată a temelor. Este un produs open
 Pentru a verifica functionarea checker-ului va trebui sa descarcati tot depozitul de mai sus, dupa aceasta deschideti un terminal in folderul in care se afla depozitul descarcat si scrieti urmatoarea comanda:
 ```shell
 ./checker.sh
-````
-Folder Structure
+```
+## Folder Structure
 
 frontend
  ├── public/
