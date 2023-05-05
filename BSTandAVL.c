@@ -3,7 +3,7 @@
 #include "./libraries/stack.h"
 #include "./libraries/BSTandAVL.h"
 
-BST *newNode(Team data){ 
+BST *newNode(Team data){
     BST *node = (BST*)malloc(sizeof(BST));
     node->data = data;
     node->height = 1;

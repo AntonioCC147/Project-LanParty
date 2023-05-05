@@ -3,8 +3,8 @@ void addAtEnd(Team **head, char *teamName, int teamMates, int totalPoints, Playe
 
 void averagePoints(Team **teamList, int numOfTeams);
 Team* lowestPoints(Team **teamList, int numOfTeams);
-
 int findTeamIndex(Team **teamList, int numOfTeams, Team *teamToFind);
+
 void deleteTeam(Team **teamList, int *numOfTeams, int index);
 void eliminationTeams(Team **teamList, int *numofTeams, int totalTeamsAfterElimination);
 

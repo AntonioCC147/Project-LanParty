@@ -113,8 +113,7 @@ int isEmptyQueue(Queue *q){
 }
 
 void deleteQueue(Queue *q) {
-    if (q == NULL)
-        return;
+    if(q == NULL) return;
 
     Team *current = q->front;
     Team *next;

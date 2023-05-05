@@ -43,9 +43,8 @@ void addAtEnd(Team **head, char *teamName, int teamMates, int totalPoints, Playe
     if(*head == NULL)
         addAtBeginning(head, teamName, teamMates, totalPoints, v);
     else{
-        while(aux->next != NULL){
+        while(aux->next != NULL)
             aux = aux->next;
-        }
         aux->next = newTeam;
     }
 }
@@ -120,7 +119,8 @@ void deleteElement(Team **head, char *teamNameDelete){
         if(strcmp(headcopy->teamName, teamNameDelete) == 0){
             prev = headcopy;
             headcopy = headcopy->next;
-        } else{
+        }
+        else{
             prev->next = headcopy->next;
             free(headcopy);
             return;

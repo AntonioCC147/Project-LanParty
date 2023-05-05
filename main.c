@@ -77,9 +77,8 @@ int main(int argc, char *argv[])
         averagePoints(teamList, numOfTeams);
 
         int totalTeamsAfterElimination = 2;
-        while(totalTeamsAfterElimination <= numOfTeams)
+        while(totalTeamsAfterElimination * 2 <= numOfTeams)
             totalTeamsAfterElimination *= 2;
-        totalTeamsAfterElimination /= 2;
 
         eliminationTeams(teamList, &numOfTeams, totalTeamsAfterElimination);
 
