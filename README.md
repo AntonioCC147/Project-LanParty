@@ -29,3 +29,34 @@ frontend
  │ ├── App.js
  │ ├── index.css
  │ └── index.js
+
+ ## Folder Structure
+```
+frontend
+ ├── public/
+ ├── src/
+ │ ├── assets/
+ │ ├── components/
+ │ │ ├── admin
+ │ │ ├── admin-market
+ │ │ ├── auth/
+ │ │ ├── helpers
+ │ │ │ ├── api
+ │ │ │ ├── buttons
+ │ │ │ ├── forms
+ │ │ │ ├── modals
+ │ │ │ ├── section-header
+ │ │ │ ├── Constants.js
+ │ │ │ └── Errors.js
+ | | ├── market
+ | | ├── landing
+ | | ├── navbar
+ | | ├── profile
+ | | ├── section
+ | | └── etc.
+ │ ├── modules/
+ │ ├── App.css
+ │ ├── App.js
+ │ ├── index.css
+ │ └── index.js
+```
