@@ -70,7 +70,6 @@ int main(int argc, char *argv[])
         fclose(filePrint);
     }
 
-
     if(Tasks[1] == 1){
         filePrint = fopen(argv[3], "wt");
 
@@ -106,7 +105,7 @@ int main(int argc, char *argv[])
                 Team *firstTeam = deQueue(teamListQueue);
                 Team *secondTeam = deQueue(teamListQueue);
 
-                if((secondTeam->teamName)[strlen(secondTeam->teamName) - 1] == 32)
+                if((secondTeam->teamName)[strlen(secondTeam->teamName) - 1] == ' ')
                     (secondTeam->teamName)[strlen(secondTeam->teamName) - 1] = '\0';
                 fprintf(filePrint, "%-33s-%33s\n", firstTeam->teamName, secondTeam->teamName);
 

@@ -57,4 +57,12 @@ Pentru a putea rula întreg programul este necesară descărcarea codului sursă
 - Citirea din fișiere s-a făcut în funția `main()` din fișierul `main.c`. Aici s-a creat o listă și s-au introdus în ordine echipele, împreună cu numele jucătorilor și detalii specifice acestora.
 
 ### Task 2:
-Ceva
+- Pentru acest task am creat mai multe funcții de determinare a punctajelor corespunzătoare. Ulterior am aflat numărul maxim de echipe ce pot rămâne folosind o simplă instrucțiune repetitivă, apoi am început să șterge echipele cu cel mai slab scor.
+- Ștergerea am făcut-o astfel: La fiecare pas, determinam cel mai slab punctaj, apoi ștergeam echipa din listă. Ulterior, reluam algoritmul și se determina următoarea echipă care avea cel mai mic scor, din cele rămase anterior și așa mai departe.
+- Pentru cazul în care două echipe au același scor, am eliminat pur și simplu prima echipă care îmi ieșea în cale, conform totodată și cerinței.
+
+### Task 3:
+- Acesta consider că a fost cel mai complicat task pe care a trebuit să-l fac. Am creat coada corespunzătoare meciurilor dintre echipe și am introdus echipele acolo.
+- Ulterior, am scos echipele două câte două și am verificat care dintre ele are punctajul mai mare. Le-am introdus în cele două stive după caz, dar am și actualizat punctajul echipei câștigătoare.
+> Aici am observat că în fișierul de intrare apăreau câteva spații în plus, astfel că a trebuit să fac eliminarea spațiilor manual.
+- 

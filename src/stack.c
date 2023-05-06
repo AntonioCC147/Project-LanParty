@@ -37,5 +37,6 @@ void deleteStack(Stack **top){
         free(*top);
         *top = topcopy;
     }
+    
     *top = NULL;
 }

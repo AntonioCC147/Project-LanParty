@@ -104,8 +104,7 @@ Team* lowestPoints(Team **teamList, int numOfTeams){
 }
 
 void deleteElement(Team **head, char *teamNameDelete){
-    if(*head == NULL)
-        return;
+    if(*head == NULL) return;
 
     Team *headcopy = *head;
     if(strcmp(headcopy->teamName, teamNameDelete) == 0){
@@ -136,6 +135,7 @@ void deleteList(Team **head){
         free(*head);
         *head = headcopy;
     }
+    
     *head = NULL;
 }
 
