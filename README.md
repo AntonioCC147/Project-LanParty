@@ -1,4 +1,4 @@
-:romania: # [LanParty] - Temă la disciplina "Proiectarea Algoritmilor"
+# [LanParty] - Temă la disciplina "Proiectarea Algoritmilor"
 Tema are ca scop fixarea și punerea în practică a noțiunilor dobândite pe întreg semestrul atât în cadrul cursurilor cât și în cadrul laboratoarelor.
 
 ## Structura poiectului:
@@ -32,12 +32,11 @@ PA-Project-LanParty
  │ ├── stack.c
  ├── README.md
  ├── checker.sh
- ├── lanparty (Executable)
+ ├── lanparty
  ├── main.c
  ├── main.h
  ├── makefile
 ```
-
 ## Rularea & Verificarea programului:
 Pentru a putea rula întreg programul este necesară descărcarea codului sursă atașat și executarea comenzii:
 ```shell
@@ -45,8 +44,8 @@ Pentru a putea rula întreg programul este necesară descărcarea codului sursă
 ```
 > Această comandă se poate executa doar dacă vă aflați în fișierul sursă.
 ## Task-uri:
-#### Task 1:
+### Task 1:
 Ceva
 
-#### Task 2:
+### Task 2:
 Ceva
