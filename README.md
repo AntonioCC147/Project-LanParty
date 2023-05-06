@@ -47,8 +47,8 @@ Pentru a putea rula întreg programul este necesară descărcarea codului sursă
 > Această comandă se poate executa doar dacă vă aflați în fișierul sursă.
 
 ## General:
-- S-a creat un fișier principal `main.c` în care s-au rezolvat toate task-urile prin apeluri de funcții specifice. Fișierul `main.h` conține structurile de bază, dar și bibliotecile predefinite ale limbajului C.
-- Întrucât fiecare cerință are necesități diferite (liste, stive, cozi, arbori), am ales să fac fișiere separate pentru fiecare în parte. Fișierele `.c` conțin funcțiile specifice, iar fișierele `.h` conțin antetul acestora și, la nevoie, structuri necesare rezolvării cerințelor.
+    - S-a creat un fișier principal `main.c` în care s-au rezolvat toate task-urile prin apeluri de funcții specifice. Fișierul `main.h` conține structurile de bază, dar și bibliotecile predefinite ale limbajului C.
+    - Întrucât fiecare cerință are necesități diferite (liste, stive, cozi, arbori), am ales să fac fișiere separate pentru fiecare în parte. Fișierele `.c` conțin funcțiile specifice, iar fișierele `.h` conțin antetul acestora și, la nevoie, structuri necesare rezolvării cerințelor.
 
 ## Task-uri:
 ### Task 1:
