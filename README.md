@@ -1,13 +1,6 @@
 # [LanParty] - Temă la disciplina "Proiectarea Algoritmilor"
 Tema are ca scop fixarea și punerea în practică a noțiunilor dobândite pe întreg semestrul atât în cadrul cursurilor cât și în cadrul laboratoarelor.
 
-Checker-ul este o aplicație de testare automată a temelor. Este un produs open-source realizat de către și pentru studenții din Facultatea de Automatică și Calculatoare - UPB, și este menit atât să usureze munca asistenților de a corecta teme cât și sa ofere studenților o evaluare cât mai obiectivă.
-
-## Rularea & Verificarea programului
-Pentru a putea rula întreg programul este necesară rularea
-```shell
-./checker.sh
-```
 ## Structura directoarelor:
 ```
 PA-Project-LanParty
@@ -44,3 +37,16 @@ PA-Project-LanParty
  ├── main.h
  ├── makefile
 ```
+
+## Rularea & Verificarea programului
+Pentru a putea rula întreg programul este necesară rularea
+```shell
+./checker.sh
+```
+
+## Task-uri
+### Task 1:
+Ceva
+
+### Task 2:
+Ceva
