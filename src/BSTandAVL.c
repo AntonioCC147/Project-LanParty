@@ -11,37 +11,18 @@ BST *newNode(Team data){
     return node;
 }
 
-BST *insertBST(BST *node, Stack *key){
-    if(node == NULL) return newNode(key->val);
-    
-    if(key->val.totalPoints < node->data.totalPoints)
-        node->left = insertBST(node->left, key);
-    else if(key->val.totalPoints > node->data.totalPoints)
-        node->right = insertBST(node->right, key);
-    else{        
-        if(strcmp(key->val.teamName, node->data.teamName) > 0)
-            node->right = insertBST(node->right, key);
-        else
-            node->left = insertBST(node->left, key);
-    }
-
-    node->height = 1 + MAX(height(node->left), height(node->right));
-    
-    return node;
-}
-
-BST *insertBST2(BST *node, Team key){
+BST *insertBST(BST *node, Team key){
     if(node == NULL) return newNode(key);
     
     if(key.totalPoints < node->data.totalPoints)
-        node->left = insertBST2(node->left, key);
+        node->left = insertBST(node->left, key);
     else if(key.totalPoints > node->data.totalPoints)
-        node->right = insertBST2(node->right, key);
+        node->right = insertBST(node->right, key);
     else{        
         if(strcmp(key.teamName, node->data.teamName) > 0)
-            node->right = insertBST2(node->right, key);
+            node->right = insertBST(node->right, key);
         else
-            node->left = insertBST2(node->left, key);
+            node->left = insertBST(node->left, key);
     }
 
     node->height = 1 + MAX(height(node->left), height(node->right));

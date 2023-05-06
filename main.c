@@ -166,7 +166,7 @@ int main(int argc, char *argv[])
         fclose(filePrint);
 
         while(lastEightTeam != NULL){
-            BSTree = insertBST2(BSTree, *lastEightTeam);
+            BSTree = insertBST(BSTree, *lastEightTeam);
             lastEightTeam = lastEightTeam->next;
         }
 

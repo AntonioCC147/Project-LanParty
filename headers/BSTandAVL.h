@@ -5,9 +5,7 @@ typedef struct BST{
 }BST;
 
 BST *newNode(Team data);
-BST *insertBST(BST *node, Stack *key);
-
-BST *insertBST2(BST *node, Team key);
+BST *insertBST(BST *node, Team key);
 
 void preorder(FILE *fileName, BST *root);
 
