@@ -1,4 +1,4 @@
-# [LanParty] - Temă la disciplina "Proiectarea Algoritmilor"
+:romania: # [LanParty] - Temă la disciplina "Proiectarea Algoritmilor"
 Tema are ca scop fixarea și punerea în practică a noțiunilor dobândite pe întreg semestrul atât în cadrul cursurilor cât și în cadrul laboratoarelor.
 
 ## Structura poiectului:
@@ -43,8 +43,7 @@ Pentru a putea rula întreg programul este necesară descărcarea codului sursă
 ```shell
 ./checker.sh
 ```
-> Această comandă se poate executa doar dacă vă aflați în fișierul sursă. Vă puteți muta în acesta folosind comanda `cd`
-
+> Această comandă se poate executa doar dacă vă aflați în fișierul sursă.
 ## Task-uri:
 #### Task 1:
 Ceva
