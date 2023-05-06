@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
         fclose(filePrint);
     }
 
-    BST *BSTree = NULL;
+    Team *lastEightTeam = NULL;
     if(Tasks[2] == 1){
         Queue *teamListQueue = createQueue();
         int roundContor = 1;
@@ -125,6 +125,8 @@ int main(int argc, char *argv[])
                 fclose(filePrint);
             }
 
+            free(defeatedTeam);
+
             filePrint = fopen(argv[3], "at");
             fprintf(filePrint, "\nWINNERS OF ROUND NO:%d\n", roundContor);
             fclose(filePrint);
@@ -139,7 +141,7 @@ int main(int argc, char *argv[])
                 fprintf(filePrint, "%-34s-  %.2f\n", winners->val.teamName, winners->val.totalPoints);
 
                 if(numOfTeams == lastEight)
-                    BSTree = insertBST(BSTree, winners);
+                    addAtBeginning(&lastEightTeam, winners->val.teamName, winners->val.teamMates, winners->val.totalPoints, winners->val.val);
 
                 winners = winners->next;
                 indexWinners++;
@@ -157,17 +159,24 @@ int main(int argc, char *argv[])
         }
     }
 
-    BST *AVLTree = NULL;
+    BST *BSTree = NULL, *AVLTree = NULL;
     if(Tasks[3] == 1){
         filePrint = fopen(argv[3], "at");
         fprintf(filePrint, "\nTOP 8 TEAMS:\n");
         fclose(filePrint);
+
+        while(lastEightTeam != NULL){
+            BSTree = insertBST2(BSTree, *lastEightTeam);
+            lastEightTeam = lastEightTeam->next;
+        }
 
         filePrint = fopen(argv[3], "at");
         preorder(filePrint, BSTree);
         fclose(filePrint);
 
         transformAVL(&AVLTree, BSTree);
+
+        free(lastEightTeam);
     }
 
     if(Tasks[4] == 1){

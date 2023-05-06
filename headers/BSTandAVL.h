@@ -6,6 +6,9 @@ typedef struct BST{
 
 BST *newNode(Team data);
 BST *insertBST(BST *node, Stack *key);
+
+BST *insertBST2(BST *node, Team key);
+
 void preorder(FILE *fileName, BST *root);
 
 int MAX(int num1, int num2);
@@ -20,4 +23,3 @@ BST *RLRotation(BST *Z);
 void transformAVL(BST **AVL, BST *root);
 BST* insertAVL(BST* node, Team *key);
 void preorderAVL(FILE *fileName, BST *root);
-

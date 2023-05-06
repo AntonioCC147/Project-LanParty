@@ -1,7 +1,7 @@
 #include "../main.h"
 #include "../headers/list.h"
 
-void addAtBeginning(Team **head, char *teamName, int teamMates, int totalPoints, Player v){
+void addAtBeginning(Team **head, char *teamName, int teamMates, float totalPoints, Player v){
     Team *newTeam = (Team *)malloc(sizeof(Team));
 
     newTeam->teamMates = teamMates;
@@ -21,7 +21,7 @@ void addAtBeginning(Team **head, char *teamName, int teamMates, int totalPoints,
     *head = newTeam;
 }
 
-void addAtEnd(Team **head, char *teamName, int teamMates, int totalPoints, Player v){
+void addAtEnd(Team **head, char *teamName, int teamMates, float totalPoints, Player v){
     Team *aux = *head;
     Team *newTeam = (Team *)malloc(sizeof(Team));
 
@@ -135,7 +135,7 @@ void deleteList(Team **head){
         free(*head);
         *head = headcopy;
     }
-    
+
     *head = NULL;
 }
 

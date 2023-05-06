@@ -65,4 +65,4 @@ Pentru a putea rula întreg programul este necesară descărcarea codului sursă
 - Acesta consider că a fost cel mai complicat task pe care a trebuit să-l fac. Am creat coada corespunzătoare meciurilor dintre echipe și am introdus echipele acolo.
 - Ulterior, am scos echipele două câte două și am verificat care dintre ele are punctajul mai mare. Le-am introdus în cele două stive după caz, dar am și actualizat punctajul echipei câștigătoare.
 > Aici am observat că în fișierul de intrare apăreau câteva spații în plus, astfel că a trebuit să fac eliminarea spațiilor manual.
-- 
+- În tot acest timp, afișam câștigătorii după formatul cerut și eliminam lista cu cei învinși.

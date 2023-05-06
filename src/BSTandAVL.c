@@ -30,6 +30,25 @@ BST *insertBST(BST *node, Stack *key){
     return node;
 }
 
+BST *insertBST2(BST *node, Team key){
+    if(node == NULL) return newNode(key);
+    
+    if(key.totalPoints < node->data.totalPoints)
+        node->left = insertBST2(node->left, key);
+    else if(key.totalPoints > node->data.totalPoints)
+        node->right = insertBST2(node->right, key);
+    else{        
+        if(strcmp(key.teamName, node->data.teamName) > 0)
+            node->right = insertBST2(node->right, key);
+        else
+            node->left = insertBST2(node->left, key);
+    }
+
+    node->height = 1 + MAX(height(node->left), height(node->right));
+    
+    return node;
+}
+
 void preorder(FILE *fileName, BST *root){
 	if(root){
         preorder(fileName, root->right);
