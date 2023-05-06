@@ -1,7 +1,7 @@
 # [LanParty] - Temă la disciplina "Proiectarea Algoritmilor"
 Tema are ca scop fixarea și punerea în practică a noțiunilor dobândite pe întreg semestrul atât în cadrul cursurilor cât și în cadrul laboratoarelor.
 
-### Cerința: [AICI](https://ocw.cs.pub.ro/courses/sda-ab/tema1)
+## Cerință: [Click](https://ocw.cs.pub.ro/courses/sda-ab/tema1)
 
 ## Structura poiectului:
 ```
