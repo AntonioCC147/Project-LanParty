@@ -1,7 +1,7 @@
 # [LanParty] - Temă la disciplina "Proiectarea Algoritmilor"
 Tema are ca scop fixarea și punerea în practică a noțiunilor dobândite pe întreg semestrul atât în cadrul cursurilor cât și în cadrul laboratoarelor.
 
-## Cerință: [click](https://ocw.cs.pub.ro/courses/sda-ab/tema1)
+## Cerință: [CLICK](https://ocw.cs.pub.ro/courses/sda-ab/tema1)
 
 ## Structura poiectului:
 ```
@@ -39,7 +39,7 @@ PA-Project-LanParty
  ├── main.h
  ├── makefile
 ```
-## Rularea & Verificarea programului:
+## Rularea & Verificarea Programului:
 Pentru a putea rula întreg programul este necesară descărcarea codului sursă atașat și executarea comenzii:
 ```shell
 ./checker.sh
@@ -52,7 +52,7 @@ Pentru a putea rula întreg programul este necesară descărcarea codului sursă
 - Întrucât fiecare cerință are necesități diferite (liste, stive, cozi, arbori), am ales să fac fișiere separate pentru fiecare în parte.
 - Fișierele `.c` conțin funcțiile specifice, iar fișierele `.h` conțin antetul acestora și, la nevoie, structuri necesare rezolvării cerințelor.
 
-## Task-uri:
+## Rezolvarea Task-urilor:
 ### Task 1:
 - Citirea din fișiere s-a făcut în funția `main()` din fișierul `main.c`. Aici s-a creat o listă și s-au introdus în ordine echipele, împreună cu numele jucătorilor și detalii specifice acestora.
 
@@ -69,8 +69,8 @@ Pentru a putea rula întreg programul este necesară descărcarea codului sursă
 - Ultimele 8 echipe au fost salvate într-o listă specială conform task-ului, iar mai apoi s-a continuat afișarea echipelor până la cea câștigătoare.
 
 ### Task 4:
-- La acest task m-am folosit de lista creată mai sus. Am inserat echipele într-un BST, iar algoritmul și-a făcut singur treaba.
+- La acest task m-am folosit de lista creată mai sus. Am inserat echipele într-un `BST`, iar algoritmul și-a făcut singur treaba.
 - De asemenea, am ținut cont și de cazurile când două echipe pot avea același punctaj.
 
 ### Task 5:
-- Ultimul task a fost rezolvat transformând BST-ul de mai sus într-un AVL prin echilibrare și afișând doar echipele de pe nivelul 2 al arborelui.
+- Ultimul task a fost rezolvat transformând `BST`-ul de mai sus într-un `AVL` prin echilibrare și afișând doar echipele de pe nivelul 2 al arborelui.
