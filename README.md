@@ -66,3 +66,11 @@ Pentru a putea rula întreg programul este necesară descărcarea codului sursă
 - Ulterior, am scos echipele două câte două și am verificat care dintre ele are punctajul mai mare. Le-am introdus în cele două stive după caz, dar am și actualizat punctajul echipei câștigătoare.
 > Aici am observat că în fișierul de intrare apăreau câteva spații în plus, astfel că a trebuit să fac eliminarea spațiilor manual.
 - În tot acest timp, afișam câștigătorii după formatul cerut și eliminam lista cu cei învinși.
+- Ultimele 8 echipe au fost salvate într-o listă specială conform task-ului, iar mai apoi s-a continuat afișarea echipelor până la cea câștigătoare.
+
+### Task 4:
+- La acest task m-am folosit de lista creată mai sus. Am inserat echipele într-un BST, iar algoritmul și-a făcut singur treaba.
+- De asemenea, am ținut cont și de cazurile când două echipe pot avea același punctaj.
+
+### Task 5:
+- Ultimul task a fost rezolvat transformând BST-ul de mai sus într-un AVL prin echilibrare și afișând doar echipele de pe nivelul 2 al arborelui.
