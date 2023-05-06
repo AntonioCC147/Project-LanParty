@@ -1,7 +1,7 @@
 # [LanParty] - Temă la disciplina "Proiectarea Algoritmilor"
 Tema are ca scop fixarea și punerea în practică a noțiunilor dobândite pe întreg semestrul atât în cadrul cursurilor cât și în cadrul laboratoarelor.
 
-## Cerință: [Click](https://ocw.cs.pub.ro/courses/sda-ab/tema1)
+## Cerință: [click](https://ocw.cs.pub.ro/courses/sda-ab/tema1)
 
 ## Structura poiectului:
 ```
@@ -46,7 +46,7 @@ Pentru a putea rula întreg programul este necesară descărcarea codului sursă
 ```
 > Această comandă se poate executa doar dacă vă aflați în fișierul sursă.
 
-## General:
+## Informații Generale:
 - S-a creat un fișier principal `main.c` în care s-au rezolvat toate task-urile prin apeluri de funcții specifice.
 - Fișierul `main.h` conține structurile de bază, dar și bibliotecile predefinite ale limbajului C.
 - Întrucât fiecare cerință are necesități diferite (liste, stive, cozi, arbori), am ales să fac fișiere separate pentru fiecare în parte.
@@ -54,7 +54,7 @@ Pentru a putea rula întreg programul este necesară descărcarea codului sursă
 
 ## Task-uri:
 ### Task 1:
-Ceva
+- Citirea din fișiere s-a făcut în funția `main()` din fișierul `main.c`. Aici s-a creat o listă și s-au introdus în ordine echipele, împreună cu numele jucătorilor și detalii specifice acestora.
 
 ### Task 2:
 Ceva
