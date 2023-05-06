@@ -1,5 +1,5 @@
-#include "main.h"
-#include "./libraries/stack.h"
+#include "../main.h"
+#include "../headers/stack.h"
 
 int isEmptyStack(Team *top){
 	return top == NULL;

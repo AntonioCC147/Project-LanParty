@@ -1,5 +1,5 @@
-#include "main.h"
-#include "./libraries/queue.h"
+#include "../main.h"
+#include "../headers/queue.h"
 
 Queue *createQueue(){
 	Queue *q;

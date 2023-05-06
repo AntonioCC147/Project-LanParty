@@ -1,7 +1,7 @@
 #include <math.h>
-#include "main.h"
-#include "./libraries/stack.h"
-#include "./libraries/BSTandAVL.h"
+#include "../main.h"
+#include "../headers/stack.h"
+#include "../headers/BSTandAVL.h"
 
 BST *newNode(Team data){
     BST *node = (BST*)malloc(sizeof(BST));

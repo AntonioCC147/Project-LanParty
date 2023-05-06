@@ -1,6 +1,6 @@
 #include "main.h"
-#include "./libraries/queue.h"
-#include "./libraries/BSTandAVL.h"
+#include "./headers/queue.h"
+#include "./headers/BSTandAVL.h"
 
 #define numOfTasks 5
 #define lastEight 8
