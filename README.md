@@ -54,7 +54,7 @@ Pentru a putea rula întreg programul este necesară descărcarea codului sursă
 
 ## Probleme Întâlnite:
 - În `main.c` dacă scot linia de cod `67` care conține
-```shel
+```c
 (teamList[i]->teamName)[strlen(teamList[i]->teamName) - 2] = '\0';
 ```
 afișările echipelor s-ar face eronat, punându-se o linie liberă între echipe.
