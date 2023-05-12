@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
 
     if(Tasks[0] == 1){
         for(int i = numOfTeams - 1; i >= 0; i--){
-            (teamList[i]->teamName)[strlen(teamList[i]->teamName) - 2] = '\0';
+            (teamList[i]->teamName)[strlen(teamList[i]->teamName) - 2] = '\0'; //daca nu pun asta efectiv mi se dau enter-uri aiurea
             fprintf(filePrint, "%s\n", teamList[i]->teamName);
         }
         fclose(filePrint);

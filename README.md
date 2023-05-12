@@ -52,6 +52,13 @@ Pentru a putea rula întreg programul este necesară descărcarea codului sursă
 - Întrucât fiecare cerință are necesități diferite (liste, stive, cozi, arbori), am ales să fac fișiere separate pentru fiecare în parte.
 - Fișierele `.c` conțin funcțiile specifice, iar fișierele `.h` conțin antetul acestora și, la nevoie, structuri necesare rezolvării cerințelor.
 
+## Probleme Întâlnite:
+- În `main.c` dacă scot linia de cod `67` care conține
+```shel
+(teamList[i]->teamName)[strlen(teamList[i]->teamName) - 2] = '\0';
+```
+afișările echipelor s-ar face eronat, punându-se o linie liberă între echipe.
+
 ## Rezolvarea Task-urilor:
 ### Task 1:
 - Citirea din fișiere s-a făcut în funția `main()` din fișierul `main.c`. Aici s-a creat o listă și s-au introdus în ordine echipele, împreună cu numele jucătorilor și detalii specifice acestora.
