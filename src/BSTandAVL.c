@@ -26,21 +26,21 @@ BST *insertBST(BST *node, Team key){
         else
             node->left = insertBST(node->left, key);
 
-    node->height = 1 + MAX(height(node->left), height(node->right));
+    node->height = 1 + maxValue(height(node->left), height(node->right));
     
     return node;
 }
 
-void preorder(FILE *fileName, BST *root){
+void displayTeamsAndPoints(FILE *fileName, BST *root){
 	if(root){
-        preorder(fileName, root->right);
+        displayTeamsAndPoints(fileName, root->right);
         fprintf(fileName, "%-34s-  %.2f\n", root->data.teamName, root->data.totalPoints);
-        preorder(fileName, root->left);
+        displayTeamsAndPoints(fileName, root->left);
 	}
 }
 
-int MAX(int num1, int num2){
-    return(num1 > num2 ) ? num1 : num2;
+int maxValue(int firstValue, int secondValue){
+    return(firstValue > secondValue ) ? firstValue : secondValue;
 }
 
 int height(BST *node){
@@ -56,8 +56,8 @@ BST *leftRotation(BST *x){
     y->left = x;
     x->right = T2;
  
-    x->height = 1 + MAX(height(x->left), height(x->right));
-    y->height = 1 + MAX(height(y->left), height(y->right));
+    x->height = 1 + maxValue(height(x->left), height(x->right));
+    y->height = 1 + maxValue(height(y->left), height(y->right));
  
     return y;
 }
@@ -69,8 +69,8 @@ BST *rightRotation(BST *y){
     x->right = y;
     y->left = T2;
  
-    y->height = 1 + MAX(height(y->left), height(y->right));
-    x->height = 1 + MAX(height(x->left), height(x->right));
+    y->height = 1 + maxValue(height(y->left), height(y->right));
+    x->height = 1 + maxValue(height(x->left), height(x->right));
  
     return x;
 }
@@ -112,7 +112,7 @@ BST* insertAVL(BST* node, Team *key) {
         else
             node->left = insertAVL(node->left, key);
 
-    node->height = 1 + MAX(height(node->left), height(node->right));
+    node->height = 1 + maxValue(height(node->left), height(node->right));
 
     int balance = getBalance(node);
 
@@ -138,11 +138,11 @@ BST* insertAVL(BST* node, Team *key) {
     return node;
 }
 
-void preorderAVL(FILE *fileName, BST *root){
+void displayTeamsFromLevel(FILE *fileName, BST *root){
     if(root != NULL){
-        preorderAVL(fileName, root->right);
+        displayTeamsFromLevel(fileName, root->right);
         if(root->height == 2)
             fprintf(fileName, "%s\n", root->data.teamName);
-        preorderAVL(fileName, root->left);
+        displayTeamsFromLevel(fileName, root->left);
     }
 }

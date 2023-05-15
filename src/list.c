@@ -1,47 +1,47 @@
 #include "../main.h"
 #include "../headers/list.h"
 
-void addAtBeginning(Team **head, char *teamName, int teamMates, float totalPoints, Player v){
+void addAtBeginning(Team **head, char *teamName, int teamMates, float totalPoints, Player value){
     Team *newTeam = (Team *)malloc(sizeof(Team));
 
     newTeam->teamMates = teamMates;
     newTeam->totalPoints = totalPoints;
-    newTeam->val.points = v.points;
+    newTeam->val.points = value.points;
 
     newTeam->teamName = (char *)malloc(strlen(teamName) +1);
     strcpy(newTeam->teamName, teamName);
 
-    newTeam->val.firstName = (char *)malloc(strlen(v.firstName) + 1);
-    strcpy(newTeam->val.firstName, v.firstName);
+    newTeam->val.firstName = (char *)malloc(strlen(value.firstName) + 1);
+    strcpy(newTeam->val.firstName, value.firstName);
 
-    newTeam->val.secondName = (char *)malloc(strlen(v.secondName) + 1);
-    strcpy(newTeam->val.secondName, v.secondName);
+    newTeam->val.secondName = (char *)malloc(strlen(value.secondName) + 1);
+    strcpy(newTeam->val.secondName, value.secondName);
 
     newTeam->next = *head;
     *head = newTeam;
 }
 
-void addAtEnd(Team **head, char *teamName, int teamMates, float totalPoints, Player v){
+void addAtEnd(Team **head, char *teamName, int teamMates, float totalPoints, Player value){
     Team *aux = *head;
     Team *newTeam = (Team *)malloc(sizeof(Team));
 
     newTeam->teamMates = teamMates;
     newTeam->totalPoints = totalPoints;
-    newTeam->val.points = v.points;
+    newTeam->val.points = value.points;
 
     newTeam->teamName = (char *)malloc(strlen(teamName) + 1);
     strcpy(newTeam->teamName, teamName);
 
-    newTeam->val.firstName = (char *)malloc(strlen(v.firstName) + 1);
-    strcpy(newTeam->val.firstName, v.firstName);
+    newTeam->val.firstName = (char *)malloc(strlen(value.firstName) + 1);
+    strcpy(newTeam->val.firstName, value.firstName);
 
-    newTeam->val.secondName = (char *)malloc(strlen(v.secondName) + 1);
-    strcpy(newTeam->val.secondName, v.secondName);
+    newTeam->val.secondName = (char *)malloc(strlen(value.secondName) + 1);
+    strcpy(newTeam->val.secondName, value.secondName);
 
     newTeam->next = NULL;
 
     if(*head == NULL)
-        addAtBeginning(head, teamName, teamMates, totalPoints, v);
+        addAtBeginning(head, teamName, teamMates, totalPoints, value);
     else{
         while(aux->next != NULL)
             aux = aux->next;
@@ -51,8 +51,8 @@ void addAtEnd(Team **head, char *teamName, int teamMates, float totalPoints, Pla
 
 void averagePoints(Team **teamList, int numOfTeams){
     for(int i = 0; i < numOfTeams; i++){
-        float sumOfPoints = 0.0;
         Team *current = teamList[i];
+        float sumOfPoints = 0.0;
 
         while(current != NULL){
             sumOfPoints = sumOfPoints + current->val.points;
@@ -112,7 +112,6 @@ void deleteElement(Team **head, char *teamNameDelete){
     if(strcmp(headcopy->teamName, teamNameDelete) == 0){
         *head = (*head)->next;
         free(headcopy);
-        return;
     }
 
     Team *prev = *head;
@@ -124,7 +123,6 @@ void deleteElement(Team **head, char *teamNameDelete){
         else{
             prev->next = headcopy->next;
             free(headcopy);
-            return;
         }
     }
 }

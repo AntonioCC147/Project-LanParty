@@ -2,123 +2,123 @@
 #include "../headers/queue.h"
 
 Queue *createQueue(){
-	Queue *q = (Queue *)malloc(sizeof(Queue));
+	Queue *queue = (Queue *)malloc(sizeof(Queue));
 
-	if(q == NULL)
+	if(queue == NULL)
 		return NULL;
-	q->front = q->rear = NULL;
+	queue->front = queue->rear = NULL;
 
-	return q;
+	return queue;
 }
 
-void enQueue(Queue *q, Team *v){
+void enQueue(Queue *queue, Team *value){
 	Team *newNode = (Team *)malloc(sizeof(Team));
 
-	newNode->teamName = (char *)malloc(strlen(v->teamName) + 1);
-    strcpy(newNode->teamName, v->teamName);
+	newNode->teamName = (char *)malloc(strlen(value->teamName) + 1);
+    strcpy(newNode->teamName, value->teamName);
 
-    newNode->teamMates = v->teamMates;
-    newNode->totalPoints = v->totalPoints;
-	newNode->val.points = v->val.points;
+    newNode->teamMates = value->teamMates;
+    newNode->totalPoints = value->totalPoints;
+	newNode->val.points = value->val.points;
 
-	newNode->val.firstName = (char *)malloc(strlen(v->val.firstName) + 1);
-    strcpy(newNode->val.firstName, v->val.firstName);
+	newNode->val.firstName = (char *)malloc(strlen(value->val.firstName) + 1);
+    strcpy(newNode->val.firstName, value->val.firstName);
 
-	newNode->val.secondName = (char *)malloc(strlen(v->val.secondName) + 1);
-    strcpy(newNode->val.secondName, v->val.secondName);
+	newNode->val.secondName = (char *)malloc(strlen(value->val.secondName) + 1);
+    strcpy(newNode->val.secondName, value->val.secondName);
 
 	newNode->next = NULL;
-	if(q->rear == NULL)
-		q->rear = newNode;
+	if(queue->rear == NULL)
+		queue->rear = newNode;
 	else{
-		(q->rear)->next = newNode;
-		(q->rear) = newNode;
+		(queue->rear)->next = newNode;
+		(queue->rear) = newNode;
 	}
-	if(q->front == NULL)
-		q->front = q->rear;
+	if(queue->front == NULL)
+		queue->front = queue->rear;
 }
 
-void enQueueStack(Queue *q, Stack *v){
+void enQueueStack(Queue *queue, Stack *stack){
 	Team *newNode = (Team *)malloc(sizeof(Team));
 
-	newNode->teamName = (char *)malloc(strlen(v->val.teamName) + 1);
-    strcpy(newNode->teamName, v->val.teamName);
+	newNode->teamName = (char *)malloc(strlen(stack->val.teamName) + 1);
+    strcpy(newNode->teamName, stack->val.teamName);
 
-    newNode->teamMates = v->val.teamMates;
-    newNode->totalPoints = v->val.totalPoints;
-	newNode->val.points = v->val.val.points;
+    newNode->teamMates = stack->val.teamMates;
+    newNode->totalPoints = stack->val.totalPoints;
+	newNode->val.points = stack->val.val.points;
 
-	newNode->val.firstName = (char *)malloc(strlen(v->val.val.firstName) + 1);
-    strcpy(newNode->val.firstName, v->val.val.firstName);
+	newNode->val.firstName = (char *)malloc(strlen(stack->val.val.firstName) + 1);
+    strcpy(newNode->val.firstName, stack->val.val.firstName);
 
-	newNode->val.secondName = (char *)malloc(strlen(v->val.val.secondName) + 1);
-    strcpy(newNode->val.secondName, v->val.val.secondName);
+	newNode->val.secondName = (char *)malloc(strlen(stack->val.val.secondName) + 1);
+    strcpy(newNode->val.secondName, stack->val.val.secondName);
 
 	newNode->next = NULL;
-	if(q->rear == NULL)
-		q->rear = newNode;
+	if(queue->rear == NULL)
+		queue->rear = newNode;
 	else{
-		(q->rear)->next = newNode;
-		(q->rear) = newNode;
+		(queue->rear)->next = newNode;
+		(queue->rear) = newNode;
 	}
-	if(q->front == NULL)
-		q->front = q->rear;
+	if(queue->front == NULL)
+		queue->front = queue->rear;
 }
 
-void enQueueWinnerTeam(Queue *q, Stack *s){
+void enQueueWinnerTeam(Queue *queue, Stack *stack){
     Team *newTeam = (Team *)malloc(sizeof(Team));
 
-    newTeam->teamName = (char *)malloc(strlen(s->val.teamName));
-    strcpy(newTeam->teamName, s->val.teamName);
+    newTeam->teamName = (char *)malloc(strlen(stack->val.teamName));
+    strcpy(newTeam->teamName, stack->val.teamName);
 
-    newTeam->teamMates = s->val.teamMates;
-    newTeam->totalPoints = s->val.totalPoints;
-	newTeam->val.points = s->val.val.points;
+    newTeam->teamMates = stack->val.teamMates;
+    newTeam->totalPoints = stack->val.totalPoints;
+	newTeam->val.points = stack->val.val.points;
 
-    newTeam->val.firstName = (char *)malloc(strlen(s->val.val.firstName) + 1);
-    strcpy(newTeam->val.firstName, s->val.val.firstName);
+    newTeam->val.firstName = (char *)malloc(strlen(stack->val.val.firstName) + 1);
+    strcpy(newTeam->val.firstName, stack->val.val.firstName);
 
-    newTeam->val.secondName = (char *)malloc(strlen(s->val.val.secondName) + 1);
-    strcpy(newTeam->val.secondName, s->val.val.secondName);
+    newTeam->val.secondName = (char *)malloc(strlen(stack->val.val.secondName) + 1);
+    strcpy(newTeam->val.secondName, stack->val.val.secondName);
 
-    newTeam->next = q->rear;
-    q->rear = newTeam;
+    newTeam->next = queue->rear;
+    queue->rear = newTeam;
 }
 
-Team *deQueue(Queue *q){
+Team *deQueue(Queue *queue){
 	Queue aux;
-	Team *d = (Team *)malloc(sizeof(Team));
+	Team *team = (Team *)malloc(sizeof(Team));
 
-	aux.front = q->front;
+	aux.front = queue->front;
 
-	d->teamName = (char *)malloc(strlen(aux.front->teamName) + 1);
-	strcpy(d->teamName, aux.front->teamName);
+	team->teamName = (char *)malloc(strlen(aux.front->teamName) + 1);
+	strcpy(team->teamName, aux.front->teamName);
 
-	d->teamMates = aux.front->teamMates;
-	d->totalPoints = aux.front->totalPoints;
-	d->val.points = aux.front->val.points;
+	team->teamMates = aux.front->teamMates;
+	team->totalPoints = aux.front->totalPoints;
+	team->val.points = aux.front->val.points;
 
-	d->val.firstName = (char *)malloc(strlen(aux.front->val.firstName) + 1);
-	strcpy(d->val.firstName, aux.front->val.firstName);
-	d->val.secondName = (char *)malloc(strlen(aux.front->val.secondName) + 1);
-	strcpy(d->val.secondName, aux.front->val.secondName);
+	team->val.firstName = (char *)malloc(strlen(aux.front->val.firstName) + 1);
+	strcpy(team->val.firstName, aux.front->val.firstName);
+	team->val.secondName = (char *)malloc(strlen(aux.front->val.secondName) + 1);
+	strcpy(team->val.secondName, aux.front->val.secondName);
 
-	d->val = aux.front->val;
-	q->front = (q->front)->next;
+	team->val = aux.front->val;
+	queue->front = (queue->front)->next;
 
 	free(aux.front);
 	
-	return d;
+	return team;
 }
 
-int isEmptyQueue(Queue *q){
-	return(q->front == NULL);
+int isEmptyQueue(Queue *queue){
+	return (queue->front == NULL);
 }
 
-void deleteQueue(Queue *q) {
-    if(q == NULL) return;
+void deleteQueue(Queue *queue) {
+    if(queue == NULL) return;
 
-    Team *current = q->front, *next;
+    Team *current = queue->front, *next;
 
     while(current != NULL){
         next = current->next;
@@ -131,5 +131,5 @@ void deleteQueue(Queue *q) {
         current = next;
     }
 
-    q->front = NULL; q->rear = NULL;
+    queue->front = NULL; queue->rear = NULL;
 }

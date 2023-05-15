@@ -7,11 +7,11 @@ typedef struct Queue{
 
 Queue *createQueue();
 
-int isEmptyQueue(Queue *q);
+int isEmptyQueue(Queue *queue);
 
-void enQueue(Queue *q, Team *v);
-void enQueueStack(Queue *q, Stack *v);
-void enQueueWinnerTeam(Queue *q, Stack *s);
+void enQueue(Queue *queue, Team *value);
+void enQueueStack(Queue *queue, Stack *value);
+void enQueueWinnerTeam(Queue *queue, Stack *stack);
 
-Team *deQueue(Queue *q);
-void deleteQueue(Queue *q);
+Team *deQueue(Queue *queue);
+void deleteQueue(Queue *queue);

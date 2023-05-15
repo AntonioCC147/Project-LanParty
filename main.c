@@ -3,7 +3,7 @@
 #include "./headers/BSTandAVL.h"
 
 #define numOfTasks 5
-#define lastEight 8
+#define lastEightTeams 8
 
 int main(int argc, char *argv[])
 {
@@ -86,6 +86,7 @@ int main(int argc, char *argv[])
 
         for(int i = numOfTeams - 1; i >= 0; i--)
             fprintf(filePrint, "%s\n", teamList[i]->teamName);
+
         fclose(filePrint);
     }
 
@@ -102,15 +103,13 @@ int main(int argc, char *argv[])
         while(numOfTeams > 1){
             filePrint = fopen(argv[3], "at");
             fprintf(filePrint, "\n--- ROUND NO:%d\n", roundContor);
-            fclose(filePrint);
 
             for(int i = 0; i < numOfTeams; i += 2){
-                filePrint = fopen(argv[3], "at");
-                Team *firstTeam = deQueue(teamListQueue);
-                Team *secondTeam = deQueue(teamListQueue);
+                Team *firstTeam = deQueue(teamListQueue), *secondTeam = deQueue(teamListQueue);
 
                 if((secondTeam->teamName)[strlen(secondTeam->teamName) - 1] == ' ')
                     (secondTeam->teamName)[strlen(secondTeam->teamName) - 1] = '\0';
+
                 fprintf(filePrint, "%-33s-%33s\n", firstTeam->teamName, secondTeam->teamName);
 
                 if(firstTeam->totalPoints > secondTeam->totalPoints){
@@ -125,15 +124,11 @@ int main(int argc, char *argv[])
                 }
 
                 free(firstTeam); free(secondTeam);
-
-                fclose(filePrint);
             }
 
             free(defeatedTeam);
 
-            filePrint = fopen(argv[3], "at");
             fprintf(filePrint, "\nWINNERS OF ROUND NO:%d\n", roundContor);
-            fclose(filePrint);
 
             numOfTeams = numOfTeams / 2;
             roundContor++;
@@ -141,17 +136,16 @@ int main(int argc, char *argv[])
             int indexWinners = 0;
             Stack *winners = winnerTeam;
             while(indexWinners < numOfTeams){
-                filePrint = fopen(argv[3], "at");
                 fprintf(filePrint, "%-34s-  %.2f\n", winners->val.teamName, winners->val.totalPoints);
 
-                if(numOfTeams == lastEight)
+                if(numOfTeams == lastEightTeams)
                     addAtBeginning(&lastEightTeam, winners->val.teamName, winners->val.teamMates, winners->val.totalPoints, winners->val.val);
 
                 winners = winners->next;
                 indexWinners++;
-
-                fclose(filePrint);
             }
+
+            fclose(filePrint);
 
             free(teamListQueue);
             teamListQueue = createQueue();
@@ -168,20 +162,17 @@ int main(int argc, char *argv[])
     if(Tasks[3] == 1){
         filePrint = fopen(argv[3], "at");
         fprintf(filePrint, "\nTOP 8 TEAMS:\n");
-        fclose(filePrint);
 
         while(lastEightTeam != NULL){
             BSTree = insertBST(BSTree, *lastEightTeam);
             lastEightTeam = lastEightTeam->next;
         }
 
-        filePrint = fopen(argv[3], "at");
-        preorder(filePrint, BSTree);
-        fclose(filePrint);
-
+        displayTeamsAndPoints(filePrint, BSTree);
         transformAVL(&AVLTree, BSTree);
-
         free(lastEightTeam);
+
+        fclose(filePrint);
     }
 
     // Task 5
@@ -189,7 +180,7 @@ int main(int argc, char *argv[])
         filePrint = fopen(argv[3], "at");
 
         fprintf(filePrint, "\nTHE LEVEL 2 TEAMS ARE: \n");
-        preorderAVL(filePrint, AVLTree);
+        displayTeamsFromLevel(filePrint, AVLTree);
 
         fclose(filePrint);
     }
