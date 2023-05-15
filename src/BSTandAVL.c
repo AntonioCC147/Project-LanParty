@@ -5,9 +5,11 @@
 
 BST *newNode(Team data){
     BST *node = (BST*)malloc(sizeof(BST));
+
     node->data = data;
     node->height = 1;
     node->left = node->right = NULL;
+
     return node;
 }
 
@@ -18,12 +20,11 @@ BST *insertBST(BST *node, Team key){
         node->left = insertBST(node->left, key);
     else if(key.totalPoints > node->data.totalPoints)
         node->right = insertBST(node->right, key);
-    else{        
+    else
         if(strcmp(key.teamName, node->data.teamName) > 0)
             node->right = insertBST(node->right, key);
         else
             node->left = insertBST(node->left, key);
-    }
 
     node->height = 1 + MAX(height(node->left), height(node->right));
     
@@ -39,11 +40,11 @@ void preorder(FILE *fileName, BST *root){
 }
 
 int MAX(int num1, int num2){
-    return (num1 > num2 ) ? num1 : num2;
+    return(num1 > num2 ) ? num1 : num2;
 }
 
 int height(BST *node){
-    if (node == NULL)
+    if(node == NULL)
         return 1;
     return node->height;
 }
@@ -105,12 +106,11 @@ BST* insertAVL(BST* node, Team *key) {
         node->left = insertAVL(node->left, key);
     else if(key->totalPoints > node->data.totalPoints)
         node->right = insertAVL(node->right, key);
-    else{
+    else
         if(strcmp(key->teamName, node->data.teamName) > 0)
             node->right = insertAVL(node->right, key);
         else
             node->left = insertAVL(node->left, key);
-    }
 
     node->height = 1 + MAX(height(node->left), height(node->right));
 
@@ -120,7 +120,7 @@ BST* insertAVL(BST* node, Team *key) {
         if(key->totalPoints < node->left->data.totalPoints)
             return rightRotation(node);
         else if(key->totalPoints == node->left->data.totalPoints)
-            if (strcmp(key->teamName, node->left->data.teamName) < 0) 
+            if(strcmp(key->teamName, node->left->data.teamName) < 0) 
                 return rightRotation(node);
 
     if(balance < -1)

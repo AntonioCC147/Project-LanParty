@@ -44,7 +44,7 @@ Pentru a putea rula întreg programul este necesară descărcarea codului sursă
 ```shell
 ./checker.sh
 ```
-> Această comandă se poate executa doar dacă vă aflați în fișierul sursă.
+> Această comandă se poate executa doar dacă vă aflați în fișierul în care se află și codul sursă.
 
 ## Informații Generale:
 - S-a creat un fișier principal `main.c` în care s-au rezolvat toate task-urile prin apeluri de funcții specifice.
@@ -53,11 +53,11 @@ Pentru a putea rula întreg programul este necesară descărcarea codului sursă
 - Fișierele `.c` conțin funcțiile specifice, iar fișierele `.h` conțin antetul acestora și, la nevoie, structuri necesare rezolvării cerințelor.
 
 ## Probleme Întâlnite:
-- În `main.c` dacă scot linia de cod `67` care conține
+- În `main.c` dacă se elimină linia de cod `67` care conține
 ```c
 (teamList[i]->teamName)[strlen(teamList[i]->teamName) - 2] = '\0';
 ```
-afișările echipelor s-ar face eronat, punându-se o linie liberă între echipe.
+afișările echipelor s-ar face eronat, punându-se o linie goală între echipe.
 
 ## Rezolvarea Task-urilor:
 ### Task 1:

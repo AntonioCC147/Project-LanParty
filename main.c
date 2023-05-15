@@ -34,9 +34,10 @@ int main(int argc, char *argv[])
         printf("Allocation error!"); exit(1);
     }
 
+    // Reading from files
     for(int i = 0; i < numOfTeams; i++){
+        teamList[i] = NULL;
 
-        teamList[i] = 0;
         fscanf(fileRead, "%d%c", &teamMates, &spaceDistroyer);
         fgets(teamName, 50, fileRead);
 
@@ -62,14 +63,16 @@ int main(int argc, char *argv[])
         free(p);
     }
 
+    // Task 1
     if(Tasks[0] == 1){
         for(int i = numOfTeams - 1; i >= 0; i--){
-            (teamList[i]->teamName)[strlen(teamList[i]->teamName) - 2] = '\0'; //daca nu pun asta efectiv mi se dau enter-uri aiurea
+            (teamList[i]->teamName)[strlen(teamList[i]->teamName) - 2] = '\0';
             fprintf(filePrint, "%s\n", teamList[i]->teamName);
         }
         fclose(filePrint);
     }
 
+    // Task 2
     if(Tasks[1] == 1){
         filePrint = fopen(argv[3], "wt");
 
@@ -86,11 +89,12 @@ int main(int argc, char *argv[])
         fclose(filePrint);
     }
 
+    // Task 3
     Team *lastEightTeam = NULL;
     if(Tasks[2] == 1){
-        Queue *teamListQueue = createQueue();
         int roundContor = 1;
-
+        
+        Queue *teamListQueue = createQueue();
         for(int i = numOfTeams - 1; i >= 0; i--)
             enQueue(teamListQueue, teamList[i]);
 
@@ -159,6 +163,7 @@ int main(int argc, char *argv[])
         }
     }
 
+    // Task 4
     BST *BSTree = NULL, *AVLTree = NULL;
     if(Tasks[3] == 1){
         filePrint = fopen(argv[3], "at");
@@ -179,6 +184,7 @@ int main(int argc, char *argv[])
         free(lastEightTeam);
     }
 
+    // Task 5
     if(Tasks[4] == 1){
         filePrint = fopen(argv[3], "at");
 
@@ -188,6 +194,7 @@ int main(int argc, char *argv[])
         fclose(filePrint);
     }
 
+    // Memory free
     free(BSTree); free(AVLTree);
 
     for(int i = 0; i < numOfTeams; i++)

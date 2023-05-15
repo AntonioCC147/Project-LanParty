@@ -2,11 +2,12 @@
 #include "../headers/queue.h"
 
 Queue *createQueue(){
-	Queue *q;
-	q = (Queue *)malloc(sizeof(Queue));
+	Queue *q = (Queue *)malloc(sizeof(Queue));
+
 	if(q == NULL)
 		return NULL;
 	q->front = q->rear = NULL;
+
 	return q;
 }
 
@@ -30,7 +31,8 @@ void enQueue(Queue *q, Team *v){
 	if(q->rear == NULL)
 		q->rear = newNode;
 	else{
-		(q->rear)->next = newNode; (q->rear) = newNode;
+		(q->rear)->next = newNode;
+		(q->rear) = newNode;
 	}
 	if(q->front == NULL)
 		q->front = q->rear;
@@ -56,7 +58,8 @@ void enQueueStack(Queue *q, Stack *v){
 	if(q->rear == NULL)
 		q->rear = newNode;
 	else{
-		(q->rear)->next = newNode; (q->rear) = newNode;
+		(q->rear)->next = newNode;
+		(q->rear) = newNode;
 	}
 	if(q->front == NULL)
 		q->front = q->rear;
@@ -115,16 +118,15 @@ int isEmptyQueue(Queue *q){
 void deleteQueue(Queue *q) {
     if(q == NULL) return;
 
-    Team *current = q->front;
-    Team *next;
+    Team *current = q->front, *next;
 
     while(current != NULL){
         next = current->next;
 
         free(current->teamName);
-		free(current->val.firstName); free(current->val.secondName);
-
-        free(current);
+		free(current->val.firstName);
+		free(current->val.secondName);
+		free(current);
 
         current = next;
     }

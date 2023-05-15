@@ -53,10 +53,12 @@ void averagePoints(Team **teamList, int numOfTeams){
     for(int i = 0; i < numOfTeams; i++){
         float sumOfPoints = 0.0;
         Team *current = teamList[i];
+
         while(current != NULL){
             sumOfPoints = sumOfPoints + current->val.points;
             current = current->next;
         }
+        
         teamList[i]->totalPoints = (float)(sumOfPoints / teamList[i]->teamMates);
     }
 }
