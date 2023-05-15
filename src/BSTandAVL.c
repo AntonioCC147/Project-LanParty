@@ -31,14 +31,6 @@ BST *insertBST(BST *node, Team key){
     return node;
 }
 
-void displayTeamsAndPoints(FILE *fileName, BST *root){
-	if(root){
-        displayTeamsAndPoints(fileName, root->right);
-        fprintf(fileName, "%-34s-  %.2f\n", root->data.teamName, root->data.totalPoints);
-        displayTeamsAndPoints(fileName, root->left);
-	}
-}
-
 int maxValue(int firstValue, int secondValue){
     return(firstValue > secondValue ) ? firstValue : secondValue;
 }
@@ -47,6 +39,12 @@ int height(BST *node){
     if(node == NULL)
         return 1;
     return node->height;
+}
+
+int getBalance(BST *node){
+    if(node == NULL)
+        return 0;
+    return height(node->left) - height(node->right);
 }
 
 BST *leftRotation(BST *x){
@@ -83,12 +81,6 @@ BST *LRRotation(BST *Z){
 BST *RLRotation(BST *Z){
     Z->right = rightRotation(Z->right);
     return leftRotation(Z);
-}
-
-int getBalance(BST *node){
-    if (node == NULL)
-        return 0;
-    return height(node->left) - height(node->right);
 }
 
 void transformAVL(BST **AVL, BST *root){
@@ -136,6 +128,14 @@ BST* insertAVL(BST* node, Team *key) {
         return RLRotation(node);
 
     return node;
+}
+
+void displayTeamsAndPoints(FILE *fileName, BST *root){
+	if(root){
+        displayTeamsAndPoints(fileName, root->right);
+        fprintf(fileName, "%-34s-  %.2f\n", root->data.teamName, root->data.totalPoints);
+        displayTeamsAndPoints(fileName, root->left);
+	}
 }
 
 void displayTeamsFromLevel(FILE *fileName, BST *root){

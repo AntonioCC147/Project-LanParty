@@ -22,8 +22,7 @@ void addAtBeginning(Team **head, char *teamName, int teamMates, float totalPoint
 }
 
 void addAtEnd(Team **head, char *teamName, int teamMates, float totalPoints, Player value){
-    Team *aux = *head;
-    Team *newTeam = (Team *)malloc(sizeof(Team));
+    Team *aux = *head, *newTeam = (Team *)malloc(sizeof(Team));
 
     newTeam->teamMates = teamMates;
     newTeam->totalPoints = totalPoints;
@@ -63,12 +62,22 @@ void averagePoints(Team **teamList, int numOfTeams){
     }
 }
 
-void eliminationTeams(Team **teamList, int *numOfTeams, int totalTeamsAfterElimination){
-    while(*numOfTeams > totalTeamsAfterElimination){
-        Team *teamToDelete = lowestPoints(teamList, *numOfTeams);
-        int index = findTeamIndex(teamList, *numOfTeams, teamToDelete);
-        deleteTeam(teamList, numOfTeams, index);
-    }
+Team* lowestPoints(Team **teamList, int numOfTeams){
+    float minimum = teamList[0]->totalPoints; int index = 0;
+
+    for(int i = 1; i < numOfTeams; i++)
+        if(teamList[i]->totalPoints <= minimum){
+            minimum = teamList[i]->totalPoints;
+            index = i;
+        }
+
+    return teamList[index];
+}
+
+int findTeamIndex(Team **teamList, int numOfTeams, Team *teamToFind){
+    for(int i = 0; i < numOfTeams; i++)
+        if(teamList[i] == teamToFind) 
+            return i;
 }
 
 void deleteTeam(Team **teamList, int *numOfTeams, int index){
@@ -85,29 +94,15 @@ void deleteTeam(Team **teamList, int *numOfTeams, int index){
     (*numOfTeams)--;
 }
 
-int findTeamIndex(Team **teamList, int numOfTeams, Team *teamToFind){
-    for(int i = 0; i < numOfTeams; i++)
-        if(teamList[i] == teamToFind) 
-            return i;
-
-    return -1;
-}
-
-Team* lowestPoints(Team **teamList, int numOfTeams){
-    float minimum = teamList[0]->totalPoints; int index = 0;
-
-    for(int i = 1; i < numOfTeams; i++)
-        if(teamList[i]->totalPoints <= minimum){
-            minimum = teamList[i]->totalPoints;
-            index = i;
-        }
-
-    return teamList[index];
+void eliminationTeams(Team **teamList, int *numOfTeams, int totalTeamsAfterElimination){
+    while(*numOfTeams > totalTeamsAfterElimination){
+        Team *teamToDelete = lowestPoints(teamList, *numOfTeams);
+        int index = findTeamIndex(teamList, *numOfTeams, teamToDelete);
+        deleteTeam(teamList, numOfTeams, index);
+    }
 }
 
 void deleteElement(Team **head, char *teamNameDelete){
-    if(*head == NULL) return;
-
     Team *headcopy = *head;
     if(strcmp(headcopy->teamName, teamNameDelete) == 0){
         *head = (*head)->next;

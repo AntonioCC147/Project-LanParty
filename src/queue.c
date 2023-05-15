@@ -11,6 +11,10 @@ Queue *createQueue(){
 	return queue;
 }
 
+int isEmptyQueue(Queue *queue){
+	return (queue->front == NULL);
+}
+
 void enQueue(Queue *queue, Team *value){
 	Team *newNode = (Team *)malloc(sizeof(Team));
 
@@ -86,8 +90,7 @@ void enQueueWinnerTeam(Queue *queue, Stack *stack){
 }
 
 Team *deQueue(Queue *queue){
-	Queue aux;
-	Team *team = (Team *)malloc(sizeof(Team));
+	Queue aux; Team *team = (Team *)malloc(sizeof(Team));
 
 	aux.front = queue->front;
 
@@ -111,13 +114,7 @@ Team *deQueue(Queue *queue){
 	return team;
 }
 
-int isEmptyQueue(Queue *queue){
-	return (queue->front == NULL);
-}
-
 void deleteQueue(Queue *queue) {
-    if(queue == NULL) return;
-
     Team *current = queue->front, *next;
 
     while(current != NULL){

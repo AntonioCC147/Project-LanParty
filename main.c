@@ -4,6 +4,7 @@
 
 #define numOfTasks 5
 #define lastEightTeams 8
+#define maxCaracter 50
 
 int main(int argc, char *argv[])
 {
@@ -11,7 +12,7 @@ int main(int argc, char *argv[])
     if(tasks == NULL){
         printf("Error! The file cannot be opened."); exit(1);
     }
-    int Tasks[5] = {0};
+    int Tasks[numOfTasks] = {0};
     for(int i = 0; i < numOfTasks; i++)
         fscanf(tasks, "%d", &Tasks[i]);
 
@@ -26,7 +27,7 @@ int main(int argc, char *argv[])
     }
 
     int numOfTeams, teamMates;
-    char teamName[50], stringHelp[50], spaceDistroyer;
+    char teamName[maxCaracter], stringHelp[maxCaracter], spaceDistroyer;
 
     fscanf(fileRead, "%d", &numOfTeams);
     Team **teamList = (Team **)malloc(numOfTeams * sizeof(Team *));
@@ -39,7 +40,7 @@ int main(int argc, char *argv[])
         teamList[i] = NULL;
 
         fscanf(fileRead, "%d%c", &teamMates, &spaceDistroyer);
-        fgets(teamName, 50, fileRead);
+        fgets(teamName, maxCaracter, fileRead);
 
         Player *p = malloc(teamMates * sizeof(Player));
         if(p == NULL){
