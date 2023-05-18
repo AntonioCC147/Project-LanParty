@@ -54,11 +54,11 @@ void averagePoints(Team **teamList, int numOfTeams){
         float sumOfPoints = 0.0;
 
         while(current != NULL){
-            sumOfPoints = sumOfPoints + current->val.points;
+            sumOfPoints += current->val.points;
             current = current->next;
         }
         
-        teamList[i]->totalPoints = (float)(sumOfPoints / teamList[i]->teamMates);
+        teamList[i]->totalPoints = (sumOfPoints / teamList[i]->teamMates);
     }
 }
 
@@ -82,6 +82,7 @@ int findTeamIndex(Team **teamList, int numOfTeams, Team *teamToFind){
 
 void deleteTeam(Team **teamList, int *numOfTeams, int index){
     Team *teamToDelete = teamList[index];
+
     if(index > 0)
         teamList[index-1]->next = teamToDelete->next;
 

@@ -32,7 +32,9 @@ BST *insertBST(BST *node, Team key){
 }
 
 int maxValue(int firstValue, int secondValue){
-    return(firstValue > secondValue ) ? firstValue : secondValue;
+    if(firstValue > secondValue)
+        return firstValue;
+    return secondValue;
 }
 
 int height(BST *node){
@@ -44,7 +46,7 @@ int height(BST *node){
 int getBalance(BST *node){
     if(node == NULL)
         return 0;
-    return height(node->left) - height(node->right);
+    return (height(node->left) - height(node->right));
 }
 
 BST *leftRotation(BST *x){
@@ -139,7 +141,7 @@ void displayTeamsAndPoints(FILE *fileName, BST *root){
 }
 
 void displayTeamsFromLevel(FILE *fileName, BST *root){
-    if(root != NULL){
+    if(root){
         displayTeamsFromLevel(fileName, root->right);
         if(root->height == 2)
             fprintf(fileName, "%s\n", root->data.teamName);

@@ -7,9 +7,6 @@ int isEmptyStack(Team *top){
 
 void createStack(Stack **top, Team *value){
     Stack *newNode = (Stack *)malloc(sizeof(Stack));
-    if(newNode == NULL){
-        printf("Allocation error!"); exit(1);
-    }
 
     newNode->val.teamMates = value->teamMates;
     newNode->val.totalPoints = value->totalPoints;

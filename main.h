@@ -12,7 +12,8 @@ typedef struct Team{
     int teamMates;
     char *teamName;
     float totalPoints;
-    
+
     Player val;
+    
     struct Team *next;
 }Team;

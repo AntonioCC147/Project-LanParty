@@ -2,52 +2,51 @@
 #include "./headers/queue.h"
 #include "./headers/BSTandAVL.h"
 
-#define numOfTasks 5
+void openFileError();
+void allocationError();
+
+#define numberOfTasks 5
 #define lastEightTeams 8
 #define maxCaracter 50
 
 int main(int argc, char *argv[])
 {
     FILE *tasks = fopen(argv[1], "rt");
-    if(tasks == NULL){
-        printf("Error! The file cannot be opened."); exit(1);
-    }
-    int Tasks[numOfTasks] = {0};
-    for(int i = 0; i < numOfTasks; i++)
+    if(tasks == NULL)
+        openFileError();
+
+    int Tasks[numberOfTasks] = {0};
+    for(int i = 0; i < numberOfTasks; i++)
         fscanf(tasks, "%d", &Tasks[i]);
 
     FILE *fileRead = fopen(argv[2], "rt");
-    if(fileRead == NULL){
-        printf("Error! The file cannot be opened."); exit(1);
-    }
+    if(fileRead == NULL)
+        openFileError();
 
     FILE *filePrint = fopen(argv[3], "wt");
-    if(filePrint == NULL){
-        printf("Error! The file cannot be opened."); exit(1);
-    }
+    if(filePrint == NULL)
+        openFileError();
 
-    int numOfTeams, teamMates;
+    int numOfTeams, numberOfTeamMates;
     char teamName[maxCaracter], stringHelp[maxCaracter], spaceDistroyer;
 
     fscanf(fileRead, "%d", &numOfTeams);
     Team **teamList = (Team **)malloc(numOfTeams * sizeof(Team *));
-    if(teamList == NULL){
-        printf("Allocation error!"); exit(1);
-    }
+    if(teamList == NULL)
+        allocationError();
 
     // Reading from files
     for(int i = 0; i < numOfTeams; i++){
         teamList[i] = NULL;
 
-        fscanf(fileRead, "%d%c", &teamMates, &spaceDistroyer);
+        fscanf(fileRead, "%d%c", &numberOfTeamMates, &spaceDistroyer);
         fgets(teamName, maxCaracter, fileRead);
 
-        Player *p = malloc(teamMates * sizeof(Player));
-        if(p == NULL){
-            printf("Allocation error!"); exit(1);
-        }
+        Player *p = malloc(numberOfTeamMates * sizeof(Player));
+        if(p == NULL)
+            allocationError();
 
-        for(int j = 0; j < teamMates; j++){
+        for(int j = 0; j < numberOfTeamMates; j++){
             fscanf(fileRead, "%s%c", stringHelp, &spaceDistroyer);
             p[j].firstName = malloc(strlen(stringHelp) + 1);
             strcpy(p[j].firstName, stringHelp);
@@ -58,7 +57,7 @@ int main(int argc, char *argv[])
 
             fscanf(fileRead, "%d", &p[j].points);
 
-            addAtBeginning(&(teamList[i]), teamName, teamMates, 0.0, p[j]);
+            addAtBeginning(&(teamList[i]), teamName, numberOfTeamMates, 0.0, p[j]);
         }
 
         free(p);
@@ -131,8 +130,7 @@ int main(int argc, char *argv[])
 
             fprintf(filePrint, "\nWINNERS OF ROUND NO:%d\n", roundContor);
 
-            numOfTeams = numOfTeams / 2;
-            roundContor++;
+            numOfTeams = numOfTeams / 2; roundContor++;
 
             int indexWinners = 0;
             Stack *winners = winnerTeam;
@@ -142,8 +140,7 @@ int main(int argc, char *argv[])
                 if(numOfTeams == lastEightTeams)
                     addAtBeginning(&lastEightTeam, winners->val.teamName, winners->val.teamMates, winners->val.totalPoints, winners->val.val);
 
-                winners = winners->next;
-                indexWinners++;
+                winners = winners->next; indexWinners++;
             }
 
             fclose(filePrint);
@@ -194,4 +191,12 @@ int main(int argc, char *argv[])
     free(teamList);
 
     return 0;
+}
+
+void openFileError(){
+    printf("Error! The file cannot be opened!"); exit(1);
+}
+
+void allocationError(){
+    printf("Memory allocation error!"); exit(1);
 }
