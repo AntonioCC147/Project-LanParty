@@ -121,8 +121,7 @@ void deleteQueue(Queue *queue) {
         next = current->next;
 
         free(current->teamName);
-		free(current->val.firstName);
-		free(current->val.secondName);
+		free(current->val.firstName); free(current->val.secondName);
 		free(current);
 
         current = next;

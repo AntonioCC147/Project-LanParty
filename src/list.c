@@ -63,7 +63,7 @@ void averagePoints(Team **teamList, int numOfTeams){
 }
 
 Team* lowestPoints(Team **teamList, int numOfTeams){
-    float minimum = teamList[0]->totalPoints; int index = 0;
+    int index = 0; float minimum = teamList[0]->totalPoints;
 
     for(int i = 1; i < numOfTeams; i++)
         if(teamList[i]->totalPoints <= minimum){
@@ -89,8 +89,7 @@ void deleteTeam(Team **teamList, int *numOfTeams, int index){
     for(int i = index; i < *numOfTeams-1; i++)
         teamList[i] = teamList[i+1];
 
-    free(teamToDelete->teamName);
-    free(teamToDelete);
+    free(teamToDelete->teamName); free(teamToDelete);
 
     (*numOfTeams)--;
 }
@@ -98,7 +97,9 @@ void deleteTeam(Team **teamList, int *numOfTeams, int index){
 void eliminationTeams(Team **teamList, int *numOfTeams, int totalTeamsAfterElimination){
     while(*numOfTeams > totalTeamsAfterElimination){
         Team *teamToDelete = lowestPoints(teamList, *numOfTeams);
+
         int index = findTeamIndex(teamList, *numOfTeams, teamToDelete);
+        
         deleteTeam(teamList, numOfTeams, index);
     }
 }

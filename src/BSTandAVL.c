@@ -14,7 +14,8 @@ BST *newNode(Team data){
 }
 
 BST *insertBST(BST *node, Team key){
-    if(node == NULL) return newNode(key);
+    if(node == NULL)
+        return newNode(key);
     
     if(key.totalPoints < node->data.totalPoints)
         node->left = insertBST(node->left, key);

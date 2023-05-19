@@ -2,15 +2,16 @@
 #include "./headers/queue.h"
 #include "./headers/BSTandAVL.h"
 
-void openFileError();
-void allocationError();
-
 #define numberOfTasks 5
 #define lastEightTeams 8
 #define maxCaracter 50
 
+void openFileError();
+void allocationError();
+
 int main(int argc, char *argv[])
 {
+    // Declaration of Files
     FILE *tasks = fopen(argv[1], "rt");
     if(tasks == NULL)
         openFileError();
@@ -35,32 +36,32 @@ int main(int argc, char *argv[])
     if(teamList == NULL)
         allocationError();
 
-    // Reading from files
+    // Reading from Files
     for(int i = 0; i < numOfTeams; i++){
         teamList[i] = NULL;
 
         fscanf(fileRead, "%d%c", &numberOfTeamMates, &spaceDistroyer);
         fgets(teamName, maxCaracter, fileRead);
 
-        Player *p = malloc(numberOfTeamMates * sizeof(Player));
-        if(p == NULL)
+        Player *player = malloc(numberOfTeamMates * sizeof(Player));
+        if(player == NULL)
             allocationError();
 
         for(int j = 0; j < numberOfTeamMates; j++){
             fscanf(fileRead, "%s%c", stringHelp, &spaceDistroyer);
-            p[j].firstName = malloc(strlen(stringHelp) + 1);
-            strcpy(p[j].firstName, stringHelp);
+            player[j].firstName = malloc(strlen(stringHelp) + 1);
+            strcpy(player[j].firstName, stringHelp);
 
             fscanf(fileRead, "%s%c", stringHelp, &spaceDistroyer);
-            p[j].secondName = malloc(strlen(stringHelp) + 1);
-            strcpy(p[j].secondName, stringHelp);
+            player[j].secondName = malloc(strlen(stringHelp) + 1);
+            strcpy(player[j].secondName, stringHelp);
 
-            fscanf(fileRead, "%d", &p[j].points);
+            fscanf(fileRead, "%d", &player[j].points);
 
-            addAtBeginning(&(teamList[i]), teamName, numberOfTeamMates, 0.0, p[j]);
+            addAtBeginning(&(teamList[i]), teamName, numberOfTeamMates, 0.0, player[j]);
         }
 
-        free(p);
+        free(player);
     }
 
     // Task 1
@@ -183,7 +184,7 @@ int main(int argc, char *argv[])
         fclose(filePrint);
     }
 
-    // Memory free
+    // Memory Free
     free(BSTree); free(AVLTree);
 
     for(int i = 0; i < numOfTeams; i++)
