@@ -1,4 +1,4 @@
-# [LanParty] - Temă la disciplina "Proiectarea Algoritmilor"
+# [LanParty] - Temă la Disciplina "Proiectarea Algoritmilor"
 Tema are ca scop fixarea și punerea în practică a noțiunilor dobândite pe întreg semestrul atât în cadrul cursurilor, cât și în cadrul laboratoarelor.
 
 ## Cerință: [CLICK](https://ocw.cs.pub.ro/courses/sda-ab/tema1)
@@ -50,11 +50,11 @@ Pentru a putea rula întreg programul este necesară descărcarea codului sursă
 - S-a creat un fișier principal `main.c` în care s-au rezolvat toate task-urile prin apeluri de funcții specifice.
 - Fișierul `main.h` conține structurile de bază, dar și bibliotecile predefinite ale limbajului `C`.
 - Întrucât fiecare cerință are necesități diferite (liste, stive, cozi, arbori), am ales să fac fișiere separate pentru fiecare în parte.
-- Fișierele `.c` conțin funcțiile specifice, iar fișierele `.h` conțin antetul acestora și, la nevoie, structuri necesare rezolvării cerințelor.
+- Fișierele `.c` conțin funcțiile specifice, iar fișierele `.h` conțin antetele acestora și, la nevoie, structuri necesare rezolvării cerințelor.
 
 ## Rezolvarea Task-urilor:
 ### Task 1:
-- Citirea din fișiere s-a făcut în funția `main()` din fișierul `main.c`. Aici s-a creat o listă și s-au introdus în ordine echipele, împreună cu numele jucătorilor și detalii specifice acestora.
+- Citirea din fișiere s-a făcut în funția `main()` din fișierul `main.c`. Aici s-a creat o listă și s-au introdus în ordine echipele, împreună cu numele jucătorilor și detaliile specifice acestora.
 
 ### Task 2:
 - Pentru acest task am creat mai multe funcții de determinare a punctajelor corespunzătoare. Ulterior am aflat numărul maxim de echipe ce pot rămâne folosind o simplă instrucțiune repetitivă, apoi am început să șterge echipele cu cel mai slab scor.
@@ -64,7 +64,6 @@ Pentru a putea rula întreg programul este necesară descărcarea codului sursă
 ### Task 3:
 - Acesta consider că a fost cel mai complicat task pe care a trebuit să-l fac. Am creat coada corespunzătoare meciurilor dintre echipe și am introdus echipele acolo.
 - Ulterior, am scos echipele două câte două și am verificat care dintre ele are punctajul mai mare. Le-am introdus în cele două stive după caz, dar am și actualizat punctajul echipei câștigătoare.
-> Aici am observat că în fișierul de intrare apăreau câteva spații în plus, astfel că a trebuit să fac eliminarea spațiilor manual.
 - În tot acest timp, afișam câștigătorii după formatul cerut și eliminam lista cu cei învinși.
 - Ultimele 8 echipe au fost salvate într-o listă specială conform task-ului, iar mai apoi s-a continuat afișarea echipelor până la cea câștigătoare.
 
@@ -76,8 +75,9 @@ Pentru a putea rula întreg programul este necesară descărcarea codului sursă
 - Ultimul task a fost rezolvat transformând `BST`-ul de mai sus într-un `AVL` prin echilibrare și afișând doar echipele de pe nivelul 2 al arborelui.
 
 ## Probleme Întâlnite:
-- În `main.c` dacă se elimină linia de cod `67` care conține
+- În `main.c` dacă se elimină linia de cod `67` care conține:
 ```c
 (teamList[i]->teamName)[strlen(teamList[i]->teamName) - 2] = '\0';
 ```
 afișările echipelor s-ar face eronat, punându-se o linie goală între echipe.
+- La task-ul 3 am observat că în fișierele de intrare apăreau câteva spații în plus, astfel că a trebuit să fac eliminarea spațiilor manual.

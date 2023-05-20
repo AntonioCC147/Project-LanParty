@@ -4,7 +4,7 @@
 
 #define numberOfTasks 5
 #define lastEightTeams 8
-#define maxCaracter 50
+#define maxCharacter 50
 
 void openFileError();
 void allocationError();
@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
         openFileError();
 
     int numOfTeams, numberOfTeamMates;
-    char teamName[maxCaracter], stringHelp[maxCaracter], spaceDistroyer;
+    char teamName[maxCharacter], stringHelp[maxCharacter], spaceDistroyer;
 
     fscanf(fileRead, "%d", &numOfTeams);
     Team **teamList = (Team **)malloc(numOfTeams * sizeof(Team *));
@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
         teamList[i] = NULL;
 
         fscanf(fileRead, "%d%c", &numberOfTeamMates, &spaceDistroyer);
-        fgets(teamName, maxCaracter, fileRead);
+        fgets(teamName, maxCharacter, fileRead);
 
         Player *player = malloc(numberOfTeamMates * sizeof(Player));
         if(player == NULL)
@@ -114,12 +114,12 @@ int main(int argc, char *argv[])
                 fprintf(filePrint, "%-33s-%33s\n", firstTeam->teamName, secondTeam->teamName);
 
                 if(firstTeam->totalPoints > secondTeam->totalPoints){
-                    (firstTeam->totalPoints) = firstTeam->totalPoints + 1.0;
+                    (firstTeam->totalPoints) = firstTeam->totalPoints + 1;
                     createStack(&winnerTeam, firstTeam);
                     createStack(&defeatedTeam, secondTeam);
                 }
                 else{
-                    (secondTeam->totalPoints) = secondTeam->totalPoints + 1.0;
+                    (secondTeam->totalPoints) = secondTeam->totalPoints + 1;
                     createStack(&winnerTeam, secondTeam);
                     createStack(&defeatedTeam, firstTeam);
                 }
@@ -169,6 +169,7 @@ int main(int argc, char *argv[])
 
         displayTeamsAndPoints(filePrint, BSTree);
         transformAVL(&AVLTree, BSTree);
+        
         free(lastEightTeam);
 
         fclose(filePrint);
