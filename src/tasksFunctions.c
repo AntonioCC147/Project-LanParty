@@ -153,9 +153,7 @@ void Task3(char *argv, Team **teamList, Team **lastEightTeam, int numOfTeams, in
             openFileError();
 
         fprintf(filePrint, "\n--- ROUND NO:%d\n", roundContor);
-
         winnerAndDefeated(filePrint, numOfTeams, teamListQueue, &winnerTeam, &defeatedTeam);
-
         fprintf(filePrint, "\nWINNERS OF ROUND NO:%d\n", roundContor);
 
         numOfTeams = numOfTeams / 2; roundContor++;
