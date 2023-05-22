@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define maxCharacter 50
+
 typedef struct Player{
     char *firstName;
     char *secondName;
