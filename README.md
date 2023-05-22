@@ -19,6 +19,7 @@ PA-Project-LanParty
  │ ├── list.h
  │ ├── queue.h
  │ ├── stack.h
+ │ ├── tasksFunctions.h
  ├── out/
  │ ├── out1.out
  │ ├── ...
@@ -32,6 +33,7 @@ PA-Project-LanParty
  │ ├── list.c
  │ ├── queue.c
  │ ├── stack.c
+ │ ├── tasksFunctions.c
  ├── README.md
  ├── checker.sh
  ├── lanparty
