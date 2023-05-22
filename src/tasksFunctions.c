@@ -107,9 +107,13 @@ void winnerAndDefeated(FILE *filePrint, int numOfTeams, Queue *teamListQueue, St
     free(*defeatedTeam);
 }
 
-void Task1(FILE *filePrint, Team **teamList, int numOfTeams){
+void Task1(char *argv, Team **teamList, int numOfTeams){
+    FILE* filePrint = fopen(argv, "wt");
+    if(filePrint == NULL)
+        openFileError();
+
     for(int i = numOfTeams - 1; i >= 0; i--){
-        (teamList[i]->teamName)[strlen(teamList[i]->teamName) - 2] = '\0';
+        (teamList[i]->teamName)[strlen(teamList[i]->teamName) - 1] = '\0';
         fprintf(filePrint, "%s\n", teamList[i]->teamName);
     }
 

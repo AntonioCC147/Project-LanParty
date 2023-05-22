@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     Team **teamList = readfileTeams(fileRead, &numOfTeams);
 
     if(Tasks[0] == 1)
-        Task1(filePrint, teamList, numOfTeams);
+        Task1(argv[3], teamList, numOfTeams);
 
     if(Tasks[1] == 1)
         Task2(argv[3], teamList, &numOfTeams);
