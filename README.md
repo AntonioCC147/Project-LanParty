@@ -79,7 +79,7 @@ Pentru a putea rula întreg programul este necesară descărcarea codului sursă
 ## Probleme Întâlnite:
 - În `main.c` dacă se elimină linia de cod `67` care conține:
 ```c
-(teamList[i]->teamName)[strlen(teamList[i]->teamName) - 2] = '\0';
+(teamList[i]->teamName)[strlen(teamList[i]->teamName) - 1] = '\0';
 ```
 afișările echipelor s-ar face eronat, punându-se o linie goală între echipe.
 - La task-ul 3 am observat că în fișierele de intrare apăreau câteva spații în plus, astfel că a trebuit să fac eliminarea spațiilor manual.
